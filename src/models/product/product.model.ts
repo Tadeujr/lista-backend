@@ -5,7 +5,7 @@ export class Product {
     private _price: number;
     private _buyDate: string;
     private _unity:number;
-    //private _total:number;
+    
     
   
     constructor(store:string,

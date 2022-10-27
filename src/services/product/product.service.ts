@@ -40,19 +40,6 @@ export class ProductService {
     
   }
 
- 
-  async updateProductw(id:any,updateProduct:Product):Promise<ProductE> {
-    
-    const seachProduct = await this.produtoRepository.findOne(id)
-    console.log(seachProduct)
-    seachProduct.store = updateProduct.store;
-    seachProduct.productName = updateProduct.productName;
-    seachProduct.price = updateProduct.price;
-    seachProduct.unity = updateProduct.unity;
-    
-    return await this.produtoRepository.save(seachProduct);
-  }
-
   async deleteProduct(idProduct: string): Promise<any> {
     const id = Number(idProduct)
     const deleteProduct = await this.produtoRepository.delete(id);

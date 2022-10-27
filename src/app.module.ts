@@ -6,7 +6,6 @@ import { ProductE } from './entites/product.entity';
 import { ProductController } from './controllers/product/product.controller';
 import { ProductService } from './services/product/product.service';
 import { ConfigModule } from '@nestjs/config';
-import {DatabaseType} from 'typeorm';
 
 const apiControlers = [ProductController,AppController];
 const apiServices = [ProductService,AppService];

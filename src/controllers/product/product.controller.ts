@@ -12,13 +12,13 @@ export class ProductController {
     listarProdutos(@Res() res) {
       this.productService
         .listarProdutos()
-        .then(mensagem => {
-          res.status(HttpStatus.OK).json(mensagem);
+        .then(message => {
+          res.status(HttpStatus.OK).json(message);
         })
         .catch(() => {
           res
             .status(HttpStatus.FORBIDDEN)
-            .json({ mensagem: "Produtos" });
+            .json({ message: "Produtos" });
         });
     }
 
@@ -26,12 +26,12 @@ export class ProductController {
     criarProduto(@Body() Product, @Res() res) {
       this.productService
         .criarProduto(Product)
-        .then(mensagem => {
-          res.status(HttpStatus.CREATED).json(mensagem);
+        .then(message => {
+          res.status(HttpStatus.CREATED).json(message);
         })
         .catch(() => {
           res.status(HttpStatus.FORBIDDEN)
-            .json({ mensagem: HttpStatus.FORBIDDEN });
+            .json({ message: HttpStatus.FORBIDDEN });
         });
     }
 
@@ -39,31 +39,31 @@ export class ProductController {
   updateProduct(
     @Param('id') id:string ,
     @Body() product: Product,
-    @Res() resposta
+    @Res() res
   ) {
     
     this.productService.updateProduct(id, product)
-      .then(mensagem => {
-        resposta.status(HttpStatus.OK).json(mensagem);
+      .then(message => {
+        res.status(HttpStatus.OK).json(message);
       })
       .catch(() => {
-        resposta
+        res
           .status(HttpStatus.FORBIDDEN)
-          .json({ mensagem: "Erro ao atualizar usuarios" });
+          .json({ message: "Erro ao atualizar usuarios" });
       });
   }
 
   @Delete(':id')
   deleteProduct( @Param('id') id:string ,
-  @Res() resposta){
+  @Res() res){
     this.productService.deleteProduct(id)
-      .then(mensagem => {
-        resposta.status(HttpStatus.OK).json(mensagem);
+      .then(message => {
+        res.status(HttpStatus.OK).json(message);
       })
       .catch(() => {
-        resposta
+        res
           .status(HttpStatus.FORBIDDEN)
-          .json({ mensagem: "Erro ao atualizar usuarios" });
+          .json({ message: "Erro ao atualizar usuarios" });
       });
   }
 }
