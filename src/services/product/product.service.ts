@@ -1,7 +1,7 @@
 import { Repository, UpdateResult, } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductE } from 'src/entites/product.entity';
+import { ProductE } from 'src/entities/product.entity';
 import { Product } from 'src/models/product/product.model';
 
 
@@ -19,7 +19,7 @@ export class ProductService {
   }
 
 
-  async criarProduto(newProduct: Product): Promise<ProductE> {
+  async createProduct(newProduct: Product): Promise<ProductE> {
     const product = new Product(
     newProduct.store,
     newProduct.productName,

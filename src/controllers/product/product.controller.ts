@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put, Req
 import { ProductService } from '../../services/product/product.service';
 import { Product } from '../../models/product/product.model';
 import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger';
-import { ProductE } from 'src/entites/product.entity';
+import { ProductE } from 'src/entities/product.entity';
 
 
 @Controller('product')
@@ -10,19 +10,15 @@ export class ProductController {
     constructor(private readonly productService: ProductService) { }
 
 
-    @Get('getAllProduct')
-    @ApiResponse({
-      status: 200,
-      description: 'A post has been successfully fetched',
-      type: ProductE
-    })
-    @ApiResponse({
-      status: 404,
-      description: 'A post with given id does not exist.'
-    })
-
+    @Get()
+    // @ApiParam({
+    //   name: 'any',
+    //   required: false,
+    //   description: 'Should be an id of a post that exists in the database',
+      
+    // })
     listarProdutos(@Req() req,@Res() res) {
-
+      //console.log(req)
       this.productService
         .listarProdutos()
         .then(message => {
@@ -36,9 +32,9 @@ export class ProductController {
     }
 
     @Post()
-    criarProduto(@Body() Product, @Req() req, @Res() res) {
+    createProduct(@Body() Product, @Req() req, @Res() res) {
       this.productService
-        .criarProduto(Product)
+        .createProduct(Product)
         .then(message => {
           res.status(HttpStatus.CREATED).json(message);
         })

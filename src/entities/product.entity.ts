@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -16,7 +16,7 @@ export class ProductE {
   @Column({ type: 'varchar' })
   productName: string;
 
-  @IsNumber()
+  @IsInt()
   @IsNotEmpty()
   @Column({ type: 'float' })
   price: number;
@@ -26,7 +26,7 @@ export class ProductE {
   @Column({ type: 'varchar' })
   buyDate: string;
 
-  @IsNumber()
+  @IsInt()
   @IsNotEmpty()
   @Column({ type: 'integer' })
   unity: number;
