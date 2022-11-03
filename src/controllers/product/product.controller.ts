@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put, Req, Res } from '@nestjs/common';
 import { ProductService } from '../../services/product/product.service';
 import { Product } from '../../models/product/product.model';
+import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ProductE } from 'src/entities/product.entity';
 
 
 @Controller('product')
@@ -9,7 +11,14 @@ export class ProductController {
 
 
     @Get()
-    listarProdutos(@Res() res) {
+    // @ApiParam({
+    //   name: 'any',
+    //   required: false,
+    //   description: 'Should be an id of a post that exists in the database',
+      
+    // })
+    listarProdutos(@Req() req,@Res() res) {
+      //console.log(req)
       this.productService
         .listarProdutos()
         .then(message => {
@@ -23,9 +32,9 @@ export class ProductController {
     }
 
     @Post()
-    criarProduto(@Body() Product, @Res() res) {
+    createProduct(@Body() Product, @Req() req, @Res() res) {
       this.productService
-        .criarProduto(Product)
+        .createProduct(Product)
         .then(message => {
           res.status(HttpStatus.CREATED).json(message);
         })
@@ -39,6 +48,7 @@ export class ProductController {
   updateProduct(
     @Param('id') id:string ,
     @Body() product: Product,
+    @Req() req,
     @Res() res
   ) {
     
@@ -54,7 +64,7 @@ export class ProductController {
   }
 
   @Delete(':id')
-  deleteProduct( @Param('id') id:string ,
+  deleteProduct( @Param('id') id:string ,@Req() req,
   @Res() res){
     this.productService.deleteProduct(id)
       .then(message => {
