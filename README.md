@@ -35,4 +35,7 @@ $ npm run test:cov
 ```
 
 ## Documentação da Api (em andamento)
-http://localhost:3001/documentationApi 
+http://localhost:3001/documentationApi
+
+## Arquivo para polular o banco de dados 
+https://github.com/Tadeujr/lista-backend/blob/development/seed.sql

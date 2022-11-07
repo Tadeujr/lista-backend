@@ -30,4 +30,7 @@ export class ProductE {
   @IsNotEmpty()
   @Column({ type: 'integer' })
   unity: number;
+
+  @Column({type:'boolean'})
+  wasAcquired:boolean;
 }

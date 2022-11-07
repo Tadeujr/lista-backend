@@ -26,6 +26,7 @@ export class ProductService {
     Number(newProduct.price),
     newProduct.buyDate,
     Number(newProduct.unity),
+    Boolean(newProduct.wasAcquired)
     );
       
     return await this.produtoRepository.save(product);

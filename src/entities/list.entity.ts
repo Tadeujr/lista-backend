@@ -1,6 +1,6 @@
-import { IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsInt, IsNotEmpty, IsString } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { Product } from '../models/product/product.model';
+import { ProductE } from "./product.entity";
 
 @Entity()
 export class ListE{
@@ -12,8 +12,9 @@ export class ListE{
     @Column()
     idUser:number
 
+    @IsArray()
     @Column()
-    product:Product[]
+    product:ProductE[]
 
     @IsInt()
     @IsNotEmpty()
