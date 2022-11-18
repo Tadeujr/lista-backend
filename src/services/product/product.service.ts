@@ -14,30 +14,37 @@ export class ProductService {
 
   ) { }
 
-  async listarProdutos(): Promise<ProductE[]> {
+  async listProducts(): Promise<ProductE[]> {
+    const saida = await this.produtoRepository.find()
+    //console.log(saida[1]);
+    //listFK: ShoppingListE {
+    
+
     return await this.produtoRepository.find();
   }
 
 
   async createProduct(newProduct: Product): Promise<ProductE> {
+    
     const product = new Product(
     newProduct.store,
     newProduct.productName,
     Number(newProduct.price),
     newProduct.buyDate,
     Number(newProduct.unity),
-    Boolean(newProduct.wasAcquired)
+    Boolean(newProduct.wasAcquired),
+    Number(newProduct.list)
     );
-      
+ 
+    // console.log(product) 
+    
     return await this.produtoRepository.save(product);
   }
 
 
-  async updateProduct(idProducy: string,product:Product): Promise<UpdateResult> {
-
-    const id = Number(idProducy)
+  async updateProduct(idProduct: string,product:Product): Promise<UpdateResult> {
     
-    return await this.produtoRepository.update(id,product)
+    return await this.produtoRepository.update(Number(idProduct),product)
     
   }
 

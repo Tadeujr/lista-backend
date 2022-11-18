@@ -17,10 +17,10 @@ export class ProductController {
     //   description: 'Should be an id of a post that exists in the database',
       
     // })
-    listarProdutos(@Req() req,@Res() res) {
+    listProducts(@Req() req,@Res() res) {
       //console.log(req)
       this.productService
-        .listarProdutos()
+        .listProducts()
         .then(message => {
           res.status(HttpStatus.OK).json(message);
         })

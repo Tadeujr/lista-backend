@@ -1,5 +1,7 @@
-import { IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { IsBoolean, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany} from 'typeorm';
+import { ShoppingListE } from './shoppingList.entity';
+
 
 @Entity()
 export class ProductE {
@@ -8,12 +10,12 @@ export class ProductE {
 
   @IsString()
   @IsNotEmpty()
-  @Column({ type: 'varchar' })
+  @Column()
   store: string;
 
   @IsString()
   @IsNotEmpty()
-  @Column({ type: 'varchar' })
+  @Column()
   productName: string;
 
   @IsInt()
@@ -23,7 +25,7 @@ export class ProductE {
 
   @IsString()
   @IsNotEmpty()
-  @Column({ type: 'varchar' })
+  @Column()
   buyDate: string;
 
   @IsInt()
@@ -31,6 +33,14 @@ export class ProductE {
   @Column({ type: 'integer' })
   unity: number;
 
+  @IsBoolean()
+  @IsNotEmpty()
   @Column({type:'boolean'})
   wasAcquired:boolean;
+
+  @IsNotEmpty()
+  @ManyToOne(() => ShoppingListE,{ eager: true, cascade: true, onDelete: "CASCADE" })
+  @JoinColumn({name:"list"})
+  list: number;
+
 }

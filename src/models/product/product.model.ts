@@ -6,6 +6,7 @@ export class Product {
     private _buyDate: string;
     private _unity:number;
     private _wasAcquired:boolean;
+    private _list:number;
     
     
   
@@ -14,13 +15,15 @@ export class Product {
       price:number,
       buyDate:string,
       unity:number,
-      wasAcquired:boolean) {
+      wasAcquired:boolean,
+      list:number) {
         this._store = store;
         this._productName = productName;
         this._price = price;
         this._buyDate = buyDate;
         this._unity = unity;
         this._wasAcquired = wasAcquired;
+        this._list = list;
       }
     
     get store():string{
@@ -45,5 +48,9 @@ export class Product {
 
     get wasAcquired():boolean{
       return this._wasAcquired;
+    }
+    
+    get list(): number{
+      return this._list;
     }
   }

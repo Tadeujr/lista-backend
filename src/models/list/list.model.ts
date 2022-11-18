@@ -1,0 +1,34 @@
+import { Product } from '../product/product.model';
+
+export class List {
+   
+    private _total: number;
+    private _dateList: string;
+    private _user:number;
+
+    
+    
+  
+    constructor(total:number,dateList:string,user:number ) {
+        this._total = total;
+        this._user = user;
+        this._dateList = dateList;
+        
+      }
+    
+
+      
+    get total() : number {
+        return this._total
+      }
+    
+    get user():number{
+        return this._user;
+    }
+    
+    get dateList():string{
+        return this._dateList;
+    } 
+    
+   
+  }

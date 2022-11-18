@@ -1,9 +1,9 @@
 import { IsArray, IsInt, IsNotEmpty, IsString } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {Entity, Column, OneToMany, PrimaryGeneratedColumn, JoinColumn } from "typeorm";
 import { ProductE } from "./product.entity";
 
 @Entity()
-export class ListE{
+export class ShoppingListE{
     @PrimaryGeneratedColumn()
     id:number;
     
@@ -11,10 +11,6 @@ export class ListE{
     @IsNotEmpty()
     @Column()
     idUser:number
-
-    @IsArray()
-    @Column()
-    product:ProductE[]
 
     @IsInt()
     @IsNotEmpty()
@@ -25,4 +21,6 @@ export class ListE{
     @IsNotEmpty()
     @Column()
     dateList: string;
+    
+
 }
