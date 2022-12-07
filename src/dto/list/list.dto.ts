@@ -1,6 +1,6 @@
-import { Product } from '../product/product.model';
+import { Product } from '../product/product.dto';
 
-export class List {
+export class ShoppingList {
    
     private _total: number;
     private _dateList: string;
@@ -11,9 +11,8 @@ export class List {
   
     constructor(total:number,dateList:string,user:number ) {
         this._total = total;
-        this._user = user;
         this._dateList = dateList;
-        
+        this._user = user;
       }
     
 
@@ -22,13 +21,15 @@ export class List {
         return this._total
       }
     
+    get dateList():string{
+        return this._dateList;
+    } 
+
     get user():number{
         return this._user;
     }
     
-    get dateList():string{
-        return this._dateList;
-    } 
+
     
    
   }

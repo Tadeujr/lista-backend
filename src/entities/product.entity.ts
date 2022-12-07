@@ -1,6 +1,7 @@
 import { IsBoolean, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany} from 'typeorm';
 import { ShoppingListE } from './shoppingList.entity';
+import { Product } from 'src/dto/product/product.dto';
 
 
 @Entity()
@@ -38,9 +39,9 @@ export class ProductE {
   @Column({type:'boolean'})
   wasAcquired:boolean;
 
-  @IsNotEmpty()
-  @ManyToOne(() => ShoppingListE,{ eager: true, cascade: true, onDelete: "CASCADE" })
-  @JoinColumn({name:"list"})
-  list: number;
+
+
+  @ManyToOne(() => ShoppingListE, (list) => list)
+  list: ShoppingListE;
 
 }

@@ -2,7 +2,7 @@ import { Repository, UpdateResult, } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductE } from 'src/entities/product.entity';
-import { Product } from 'src/models/product/product.model';
+import { Product } from 'src/dto/product/product.dto';
 
 
 @Injectable()
@@ -15,18 +15,15 @@ export class ProductService {
   ) { }
 
   async listProducts(): Promise<ProductE[]> {
-    const saida = await this.produtoRepository.find()
-    //console.log(saida[1]);
-    //listFK: ShoppingListE {
     
 
-    return await this.produtoRepository.find();
+    return await this.produtoRepository.query(`select * from product_e`);
   }
 
 
-  async createProduct(newProduct: Product): Promise<ProductE> {
-    
-    const product = new Product(
+  async createProduct(newProduct): Promise<ProductE>{
+
+    let product = new Product(
     newProduct.store,
     newProduct.productName,
     Number(newProduct.price),
@@ -36,8 +33,8 @@ export class ProductService {
     Number(newProduct.list)
     );
  
-    // console.log(product) 
-    
+
+
     return await this.produtoRepository.save(product);
   }
 

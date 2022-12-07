@@ -1,52 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { ShoppingListE } from '../../entities/shoppingList.entity';
-import { List } from '../../models/list/list.model';
+import {ShoppingList } from '../../dto/list/list.dto';
 
 @Injectable()
 export class ShoppingListService {
+  constructor(
+    @InjectRepository(ShoppingListE)
+    private readonly listRepository: Repository<ShoppingListE>,
+  ) {}
 
-    constructor(
-        @InjectRepository(ShoppingListE)
-        private readonly listRepository: Repository<ShoppingListE>
+  //So teste pois irei buscar por id do cliente as listas dele
+  async allList(idUser): Promise<ShoppingListE[]> {
+    return await this.listRepository.query(`select * from shopping_list_e where "userId" = '${idUser}'`)
+  }
+
+  //antes de criar a lista verificar se já existe a data criada e adicionar na lista existente 
+  async createList(newList: ShoppingListE): Promise<ShoppingListE> {
+    return await this.listRepository.save(newList);
+  }
+
+  async seacherList(list:any): Promise<ShoppingListE[]> {
+    console.log(list)
+    return await this.listRepository.query(`select * from shopping_list_e where "dateList" = '${list.dateList}' and "userId" = '${list.userId}'`)//and "userId" = '${list.idUser}'
     
-      ) { }
-    
-      //So teste pois irei buscar por id do cliente as listas dele
-      async allList(): Promise<ShoppingListE[]> {
-        return await this.listRepository.find();
-      }
-    
-    
-      async createList(newList: List): Promise<ShoppingListE> {
-        
-        const list = new List(
-            newList.total,
-            newList.dateList.toString(),
-            newList.user,
-            
-        );
-        console.log(list)
-        
-        
-          
-        return await this.listRepository.save(list);
-      }
-    
-    
-    //   async updateProduct(idProducy: string,product:Product): Promise<UpdateResult> {
-    
-    //     const id = Number(idProducy)
-        
-    //     return await this.produtoRepository.update(id,product)
-        
-    //   }
-    
-    //   async deleteProduct(idProduct: string): Promise<any> {
-    //     const id = Number(idProduct)
-    //     const deleteProduct = await this.produtoRepository.delete(id);
-    //     console.log('Produto deletado')
-    //     return deleteProduct
-    //   }
+  }
+
+    async deleteList(id): Promise<any> {
+      
+      await this.listRepository.query(`delete from product_e where "listId" ='${id}'`)
+      return await this.listRepository.delete(id);
+    }
 }

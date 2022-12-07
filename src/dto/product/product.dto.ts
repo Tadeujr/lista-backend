@@ -50,7 +50,7 @@ export class Product {
       return this._wasAcquired;
     }
     
-    get list(): number{
+    get list(): Object{
       return this._list;
     }
   }

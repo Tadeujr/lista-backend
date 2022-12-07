@@ -1,5 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, PrimaryColumn, ManyToOne, OneToMany } from 'typeorm';
 import PersonE from './person.entity';
+import { ShoppingListE } from './shoppingList.entity';
 
 @Entity()
 export class UserE{
@@ -14,6 +16,11 @@ export class UserE{
 
     @OneToOne(()=>PersonE, person => person.id)
     @JoinColumn()
-    personFk:PersonE;
+    person:PersonE;
+
+    @IsNotEmpty()
+    @OneToMany(() => ShoppingListE,list=>list.id)
+    list:ShoppingListE[];
+
 
 }

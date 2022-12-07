@@ -8,16 +8,32 @@ INSERT INTO public.product_e(
 		   
 		   ;
 
+select * from public.person_e
+select * from public.user_e
+select * from shopping_list_e
+select * from public.product_e
 
 INSERT INTO public.person_e(
 	name, city, uf, zipcode, email)
 	VALUES ( 'Tadeu Junior', 'Guarapari', 'ES', '29157853', 'tadeu@hotmail.com');
 
+INSERT INTO public.person_e(
+	name, city, uf, zipcode, email)
+	VALUES ( 'Tadeu 2', 'Guarapari', 'ES', '29157853', 'tadeu@hotmail.com');
+
 
 INSERT INTO public.user_e(
-	login, password, "personFkId")
+	login, password, "personId")
 	VALUES ('Tadeu Junior', '123', 1);
 
+INSERT INTO public.user_e(
+	login, password, "personId")
+	VALUES ('Tadeu', '123', 2);
+
 INSERT INTO public.shopping_list_e(
-	"idUser", total, "dateList")
-	VALUES ( 1, 0, '18/11/2022');
+	 total, "dateList","userId")
+	VALUES ( 0, '18/11/2022', 2);
+
+DROP TABLE	public.person_e,public.user_e,shopping_list_e, public.product_e CASCADE
+
+

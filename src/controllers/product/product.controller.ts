@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put, Req, Res } from '@nestjs/common';
 import { ProductService } from '../../services/product/product.service';
-import { Product } from '../../models/product/product.model';
+import { Product } from '../../dto/product/product.dto';
 import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { ProductE } from 'src/entities/product.entity';
 
@@ -32,9 +32,9 @@ export class ProductController {
     }
 
     @Post()
-    createProduct(@Body() Product, @Req() req, @Res() res) {
+    createProduct(@Body() product, @Req() req, @Res() res) {
       this.productService
-        .createProduct(Product)
+        .createProduct(product)
         .then(message => {
           res.status(HttpStatus.CREATED).json(message);
         })
@@ -44,24 +44,24 @@ export class ProductController {
         });
     }
 
-  @Put(":id")
-  updateProduct(
-    @Param('id') id:string ,
-    @Body() product: Product,
-    @Req() req,
-    @Res() res
-  ) {
+  // @Put(":id")
+  // updateProduct(
+  //   @Param('id') id:string ,
+  //   @Body() product: Product,
+  //   @Req() req,
+  //   @Res() res
+  // ) {
     
-    this.productService.updateProduct(id, product)
-      .then(message => {
-        res.status(HttpStatus.OK).json(message);
-      })
-      .catch(() => {
-        res
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: "Erro ao atualizar usuarios" });
-      });
-  }
+  //   this.productService.updateProduct(id, product)
+  //     .then(message => {
+  //       res.status(HttpStatus.OK).json(message);
+  //     })
+  //     .catch(() => {
+  //       res
+  //         .status(HttpStatus.FORBIDDEN)
+  //         .json({ message: "Erro ao atualizar usuarios" });
+  //     });
+  // }
 
   @Delete(':id')
   deleteProduct( @Param('id') id:string ,@Req() req,

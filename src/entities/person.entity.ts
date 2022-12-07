@@ -34,6 +34,9 @@ export default class PersonE{
     @Column()
     email:string
 
+    // @OneToOne(()=>UserE, user => user.personFk)
+    // @JoinColumn()
+    // userFk:UserE;
 
 }
 
