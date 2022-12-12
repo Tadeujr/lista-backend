@@ -11,18 +11,18 @@ export class ShoppingListService {
     private readonly listRepository: Repository<ShoppingListE>,
   ) {}
 
-  //So teste pois irei buscar por id do cliente as listas dele
+  //seach all list register from user
   async allList(idUser): Promise<ShoppingListE[]> {
     return await this.listRepository.query(`select * from shopping_list_e where "userId" = '${idUser}'`)
   }
 
   //antes de criar a lista verificar se já existe a data criada e adicionar na lista existente 
   async createList(newList: ShoppingListE): Promise<ShoppingListE> {
+    
     return await this.listRepository.save(newList);
   }
 
   async seacherList(list:any): Promise<ShoppingListE[]> {
-    console.log(list)
     return await this.listRepository.query(`select * from shopping_list_e where "dateList" = '${list.dateList}' and "userId" = '${list.userId}'`)//and "userId" = '${list.idUser}'
     
   }
@@ -32,4 +32,12 @@ export class ShoppingListService {
       await this.listRepository.query(`delete from product_e where "listId" ='${id}'`)
       return await this.listRepository.delete(id);
     }
-}
+
+
+    async updateProduct(idList: number,list:ShoppingListE): Promise<UpdateResult> {
+    
+      return await this.listRepository.update(Number(idList),list)
+      
+    }
+
+  }

@@ -19,6 +19,11 @@ export class ProductE {
   @Column()
   productName: string;
 
+  @IsString()
+  @IsNotEmpty()
+  @Column()
+  brand:string;
+
   @IsInt()
   @IsNotEmpty()
   @Column({ type: 'float' })

@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, PrimaryColumn, ManyToOne, OneToMany } from 'typeorm';
 import PersonE from './person.entity';
 import { ShoppingListE } from './shoppingList.entity';
@@ -8,18 +8,24 @@ export class UserE{
     @PrimaryGeneratedColumn()
     id: number;
 
+    @IsEmail()
+    @IsNotEmpty()
     @Column()
-    login:string;
+    email:string
 
+    @IsString()
+    @IsNotEmpty()
     @Column()
     password:string;
 
-    @OneToOne(()=>PersonE, person => person.id)
+    @IsString()
+    @IsNotEmpty()
+    @OneToOne(()=>PersonE, person => person)
     @JoinColumn()
     person:PersonE;
 
     @IsNotEmpty()
-    @OneToMany(() => ShoppingListE,list=>list.id)
+    @OneToMany(() => ShoppingListE,list=>list)
     list:ShoppingListE[];
 
 

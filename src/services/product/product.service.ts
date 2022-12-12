@@ -21,21 +21,10 @@ export class ProductService {
   }
 
 
-  async createProduct(newProduct): Promise<ProductE>{
+  async createProduct(newProduct:ProductE): Promise<ProductE>{
 
-    let product = new Product(
-    newProduct.store,
-    newProduct.productName,
-    Number(newProduct.price),
-    newProduct.buyDate,
-    Number(newProduct.unity),
-    Boolean(newProduct.wasAcquired),
-    Number(newProduct.list)
-    );
  
-
-
-    return await this.produtoRepository.save(product);
+    return await this.produtoRepository.save(newProduct);
   }
 
 

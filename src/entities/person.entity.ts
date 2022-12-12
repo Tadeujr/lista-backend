@@ -29,14 +29,9 @@ export default class PersonE{
     zipcode:string
 
 
-    @IsString()
-    @IsNotEmpty()
-    @Column()
-    email:string
-
-    // @OneToOne(()=>UserE, user => user.personFk)
-    // @JoinColumn()
-    // userFk:UserE;
+    @OneToOne(()=>UserE, user => user)
+    @JoinColumn()
+    userFk:UserE;
 
 }
 

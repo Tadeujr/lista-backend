@@ -6,10 +6,12 @@ import {
   HttpStatus,
   Param,
   Post,
+  Put,
   Req,
   Res,
 } from '@nestjs/common';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
+
 
 @Controller('list')
 export class shoppinglistController {
@@ -50,7 +52,7 @@ export class shoppinglistController {
   }
 
   @Get(":id")
-  listas( @Param("id") id:number,@Req() req,@Res() res){
+  allList( @Param("id") id:number,@Req() req,@Res() res){
     this.listService.allList(id)
     .then(message => {
       res.status(HttpStatus.OK).json(message);
@@ -58,7 +60,18 @@ export class shoppinglistController {
     .catch(() => {
       res
         .status(HttpStatus.FORBIDDEN)
-        .json({ message: "Erro ao buscar Lista verifique a escrita do objeto os campo id e dateList." });
+        .json({ message: "id não encontrado" });
+    });
+  }
+
+  @Put(":id")
+  alterList( @Param("id") id:number,@Req() req,@Res() res){
+    this.listService.allList(id).then(message =>{
+      res.status(HttpStatus.OK).jason(message)
+    }).catch(() => {
+      res
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "id não encontrado" });
     });
   }
 
