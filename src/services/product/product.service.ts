@@ -17,11 +17,11 @@ export class ProductService {
   async listProducts(): Promise<ProductE[]> {
     
 
-    return await this.produtoRepository.query(`select * from product_e`);
+    return await this.produtoRepository.query(`select * from Product`);
   }
 
 
-  async createProduct(newProduct:ProductE): Promise<ProductE>{
+  async createProduct(newProduct:Product): Promise<ProductE>{
 
  
     return await this.produtoRepository.save(newProduct);

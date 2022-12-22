@@ -4,7 +4,7 @@ import { ShoppingListE } from './shoppingList.entity';
 import { Product } from 'src/dto/product/product.dto';
 
 
-@Entity()
+@Entity({name:"product"})
 export class ProductE {
   @PrimaryGeneratedColumn()
   id: number;

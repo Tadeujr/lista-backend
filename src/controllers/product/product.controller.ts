@@ -32,7 +32,7 @@ export class ProductController {
     }
 
     @Post()
-    createProduct(@Body() product, @Req() req, @Res() res) {
+    createProduct(@Body() product:Product, @Req() req, @Res() res) {
       this.productService
         .createProduct(product)
         .then(message => {
