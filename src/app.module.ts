@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './services/app/app.service';
-import { AppController } from './controllers/app/app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductE } from './entities/product.entity';
 import { ProductController } from './controllers/product/product.controller';
@@ -12,8 +10,8 @@ import PersonE from './entities/person.entity';
 import { shoppinglistController } from './controllers/list/shoppingList.controller';
 import { ShoppingListService } from './services/list/shoppingList.service';
 
-const apiControlers = [ProductController,AppController,shoppinglistController];
-const apiServices = [ProductService,AppService,ShoppingListService];
+const apiControlers = [ProductController,shoppinglistController];
+const apiServices = [ProductService,ShoppingListService];
 const modelEntity = [ProductE,ShoppingListE,PersonE,UserE];
 
 
@@ -26,9 +24,7 @@ const modelEntity = [ProductE,ShoppingListE,PersonE,UserE];
       username: process.env.USERNAME_DATABASE,
       password:process.env.PASSWORD_DATABASE,
       database: process.env.DATABASE,
-      entities: [
-          ...modelEntity
-      ],
+      entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize:Boolean(process.env.SYNCHRONIZE_DATABASE)
     }),
     TypeOrmModule.forFeature([...modelEntity]),

@@ -34,10 +34,10 @@ export class ShoppingListService {
     }
 
 
-    async updateProduct(idList: number,list:ShoppingListE): Promise<UpdateResult> {
+    async updateList(idList: string,list:ShoppingListE): Promise<UpdateResult> {
     
-      return await this.listRepository.update(Number(idList),list)
+      return await this.listRepository.update(idList,list)
       
     }
-
+ 
   }

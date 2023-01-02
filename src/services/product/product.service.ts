@@ -28,8 +28,7 @@ export class ProductService {
   }
 
 
-  async updateProduct(idProduct: string,product:Product): Promise<UpdateResult> {
-    
+  async updateProduct(idProduct: string,product:ProductE): Promise<UpdateResult> {
     return await this.produtoRepository.update(Number(idProduct),product)
     
   }

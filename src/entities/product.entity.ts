@@ -45,7 +45,6 @@ export class ProductE {
   wasAcquired:boolean;
 
 
-
   @ManyToOne(() => ShoppingListE, (list) => list)
   list: ShoppingListE;
 

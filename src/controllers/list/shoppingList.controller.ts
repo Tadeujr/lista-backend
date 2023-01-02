@@ -11,6 +11,7 @@ import {
   Res,
 } from '@nestjs/common';
 import { ShoppingList } from 'src/dto/list/list.dto';
+import { ShoppingListE } from 'src/entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
 
 
@@ -66,9 +67,10 @@ export class shoppinglistController {
   }
 
   @Put(":id")
-  alterList( @Param("id") id:number,@Req() req,@Res() res){
-    this.listService.allList(id).then(message =>{
-      res.status(HttpStatus.OK).jason(message)
+  alterList( @Param('id') id:string ,
+  @Body() list: ShoppingListE,@Req() req,@Res() res){
+    this.listService.updateList(id,list).then(message =>{
+      res.status(HttpStatus.OK).json(message)
     }).catch(() => {
       res
         .status(HttpStatus.FORBIDDEN)
