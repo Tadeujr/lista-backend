@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMan
 import { UserE } from './user.entity';
 
 
-@Entity()
+@Entity({name:"person"})
 export default class PersonE{
     @PrimaryGeneratedColumn()
     id: number;    

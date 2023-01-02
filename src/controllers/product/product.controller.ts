@@ -32,7 +32,7 @@ export class ProductController {
     }
 
     @Post()
-    createProduct(@Body() product, @Req() req, @Res() res) {
+    createProduct(@Body() product:Product, @Req() req, @Res() res) {
       this.productService
         .createProduct(product)
         .then(message => {
@@ -44,24 +44,24 @@ export class ProductController {
         });
     }
 
-  // @Put(":id")
-  // updateProduct(
-  //   @Param('id') id:string ,
-  //   @Body() product: Product,
-  //   @Req() req,
-  //   @Res() res
-  // ) {
+  @Put(":id")
+  updateProduct(
+    @Param('id') id:string ,
+    @Body() product: ProductE,
+    @Req() req,
+    @Res() res
+  ) {
     
-  //   this.productService.updateProduct(id, product)
-  //     .then(message => {
-  //       res.status(HttpStatus.OK).json(message);
-  //     })
-  //     .catch(() => {
-  //       res
-  //         .status(HttpStatus.FORBIDDEN)
-  //         .json({ message: "Erro ao atualizar usuarios" });
-  //     });
-  // }
+    this.productService.updateProduct(id, product)
+      .then(message => {
+        res.status(HttpStatus.OK).json(message);
+      })
+      .catch(() => {
+        res
+          .status(HttpStatus.FORBIDDEN)
+          .json({ message: "Erro ao atualizar usuarios" });
+      });
+  }
 
   @Delete(':id')
   deleteProduct( @Param('id') id:string ,@Req() req,

@@ -3,7 +3,7 @@ import {Entity, Column, OneToMany, PrimaryGeneratedColumn, JoinColumn, OneToOne,
 import { ProductE } from "./product.entity";
 import { UserE } from "./user.entity";
 
-@Entity()
+@Entity({name:"shoppingList"})
 export class ShoppingListE{
     @PrimaryGeneratedColumn()
     id:number;
@@ -19,12 +19,12 @@ export class ShoppingListE{
     @Column()
     dateList: string;
     
-    @IsString()
+    
     @IsNotEmpty()
     @ManyToOne(()=>UserE, (user) => user)
     user:UserE;
 
-    @IsString()
+    
     @OneToMany(() => ProductE, (product) => product)
     products: ProductE[];
 }

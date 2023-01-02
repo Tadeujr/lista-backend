@@ -1,3 +1,4 @@
+import { ProductE } from 'src/entities/product.entity';
 import { Product } from '../product/product.dto';
 
 export class ShoppingList {
@@ -5,7 +6,7 @@ export class ShoppingList {
     private _total: number;
     private _dateList: string;
     private _user:number;
-
+    
     
     
   

@@ -2,6 +2,7 @@ import { Get } from '@nestjs/common';
 export class Product {
     private _store:string;
     private _productName: string;
+    private _brand:string;
     private _price: number;
     private _buyDate: string;
     private _unity:number;
@@ -12,6 +13,7 @@ export class Product {
   
     constructor(store:string,
       productName:string,
+      brand:string,
       price:number,
       buyDate:string,
       unity:number,
@@ -19,6 +21,7 @@ export class Product {
       list:number) {
         this._store = store;
         this._productName = productName;
+        this._brand = brand;
         this._price = price;
         this._buyDate = buyDate;
         this._unity = unity;
@@ -48,6 +51,10 @@ export class Product {
 
     get wasAcquired():boolean{
       return this._wasAcquired;
+    }
+
+    get brand():string{
+      return this._brand
     }
     
     get list(): Object{

@@ -13,31 +13,31 @@ export class ShoppingListService {
 
   //seach all list register from user
   async allList(idUser): Promise<ShoppingListE[]> {
-    return await this.listRepository.query(`select * from shopping_list_e where "userId" = '${idUser}'`)
+    return await this.listRepository.query(`select * from "shoppingList" where "userId" = '${idUser}'`)
   }
 
   //antes de criar a lista verificar se já existe a data criada e adicionar na lista existente 
-  async createList(newList: ShoppingListE): Promise<ShoppingListE> {
+  async createList(newList): Promise<ShoppingListE> {
     
     return await this.listRepository.save(newList);
   }
 
   async seacherList(list:any): Promise<ShoppingListE[]> {
-    return await this.listRepository.query(`select * from shopping_list_e where "dateList" = '${list.dateList}' and "userId" = '${list.userId}'`)//and "userId" = '${list.idUser}'
+    return await this.listRepository.query(`select * from "shoppingList" where "dateList" = '${list.dateList}' and "userId" = '${list.userId}'`)//and "userId" = '${list.idUser}'
     
   }
 
     async deleteList(id): Promise<any> {
       
-      await this.listRepository.query(`delete from product_e where "listId" ='${id}'`)
+      await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
       return await this.listRepository.delete(id);
     }
 
 
-    async updateProduct(idList: number,list:ShoppingListE): Promise<UpdateResult> {
+    async updateList(idList: string,list:ShoppingListE): Promise<UpdateResult> {
     
-      return await this.listRepository.update(Number(idList),list)
+      return await this.listRepository.update(idList,list)
       
     }
-
+ 
   }

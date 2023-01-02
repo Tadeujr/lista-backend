@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, PrimaryCo
 import PersonE from './person.entity';
 import { ShoppingListE } from './shoppingList.entity';
 
-@Entity()
+@Entity({name:"user"})
 export class UserE{
     @PrimaryGeneratedColumn()
     id: number;
