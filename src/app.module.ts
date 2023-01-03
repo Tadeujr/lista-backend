@@ -7,11 +7,11 @@ import { shoppinglistController } from './controllers/list/shoppingList.controll
 import { ShoppingListService } from './services/list/shoppingList.service';
 import { UsersModule } from './module/users/users.module';
 import { ProductModule } from './module/product/product.module';
+import { ShoppingListModule } from './module/shopping-list/shopping-list.module';
 
-const apiControlers = [shoppinglistController];
-const apiServices = [ShoppingListService];
-const modelEntity = [ShoppingListE,PersonE];
-const modules = [ProductModule,UsersModule,]
+
+const modelEntity = [PersonE];
+const modules = [ProductModule,UsersModule,ShoppingListModule]
 
 
 @Module({
@@ -29,7 +29,7 @@ const modules = [ProductModule,UsersModule,]
     TypeOrmModule.forFeature([...modelEntity]),
     ...modules
   ],
-  controllers: [...apiControlers],
-  providers: [...apiServices],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

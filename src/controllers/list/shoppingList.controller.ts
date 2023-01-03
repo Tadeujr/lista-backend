@@ -15,7 +15,7 @@ import { ShoppingListE } from 'src/entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
 
 
-@Controller('list')
+@Controller('api/v1/list')
 export class shoppinglistController {
   constructor(private readonly listService: ShoppingListService) {}
 
@@ -38,7 +38,19 @@ export class shoppinglistController {
 
 
 
-  
+  @Get("allList")
+  allList( @Req() req,@Res() res){
+    this.listService.allList()
+    .then(message => {
+      res.status(HttpStatus.OK).json(message);
+    })
+    .catch(() => {
+      res
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Erro ao buscar Lista verifique a escrita do objeto os campo id e dateList." });
+    });
+  }
+
   @Get("find")
   seacherList( @Body() list,@Req() req,@Res() res){
     this.listService.seacherList(list)
@@ -54,8 +66,8 @@ export class shoppinglistController {
   }
 
   @Get(":id")
-  allList( @Param("id") id:number,@Req() req,@Res() res){
-    this.listService.allList(id)
+  allListUser( @Param("id") id:number,@Req() req,@Res() res){
+    this.listService.allListForUser(id)
     .then(message => {
       res.status(HttpStatus.OK).json(message);
     })

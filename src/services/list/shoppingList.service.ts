@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult } from 'typeorm';
 import { ShoppingListE } from '../../entities/shoppingList.entity';
-import {ShoppingList } from '../../dto/list/list.dto';
 
 @Injectable()
 export class ShoppingListService {
@@ -10,9 +9,14 @@ export class ShoppingListService {
     @InjectRepository(ShoppingListE)
     private readonly listRepository: Repository<ShoppingListE>,
   ) {}
-
+  
+  //
+  async allList(): Promise<ShoppingListE[]> {
+        
+    return await this.listRepository.query(`select * from "shoppingList"`);
+  }
   //seach all list register from user
-  async allList(idUser): Promise<ShoppingListE[]> {
+  async allListForUser(idUser): Promise<ShoppingListE[]> {
     return await this.listRepository.query(`select * from "shoppingList" where "userId" = '${idUser}'`)
   }
 
@@ -21,6 +25,8 @@ export class ShoppingListService {
     
     return await this.listRepository.save(newList);
   }
+
+
 
   async seacherList(list:any): Promise<ShoppingListE[]> {
     return await this.listRepository.query(`select * from "shoppingList" where "dateList" = '${list.dateList}' and "userId" = '${list.userId}'`)//and "userId" = '${list.idUser}'
@@ -36,7 +42,7 @@ export class ShoppingListService {
 
     async updateList(idList: string,list:ShoppingListE): Promise<UpdateResult> {
     
-      return await this.listRepository.update(idList,list)
+      return await this.listRepository.update(Number(idList),list)
       
     }
  

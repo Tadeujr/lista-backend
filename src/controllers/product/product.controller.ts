@@ -5,7 +5,7 @@ import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { ProductE } from 'src/entities/product.entity';
 
 
-@Controller('product')
+@Controller('api/v1/product')
 export class ProductController {
     constructor(private readonly productService: ProductService) { }
 
