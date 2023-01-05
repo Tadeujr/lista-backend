@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
+import { RegexHelper } from 'src/util/regex';
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, PrimaryColumn, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import PersonE from './person.entity';
 import { ShoppingListE } from './shoppingList.entity';
@@ -13,6 +14,7 @@ export class UserE{
     @Column()
     email:string
 
+    @Matches(RegexHelper.password)
     @IsString()
     @IsNotEmpty()
     @Column()

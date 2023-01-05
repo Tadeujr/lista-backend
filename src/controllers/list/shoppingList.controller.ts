@@ -10,7 +10,7 @@ import {
   Req,
   Res,
 } from '@nestjs/common';
-import { ShoppingList } from 'src/dto/list/list.dto';
+import { ShoppingListDto } from 'src/dto/list/list.dto';
 import { ShoppingListE } from 'src/entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
 
@@ -21,7 +21,7 @@ export class shoppinglistController {
 
 
   @Post()
-  createList(@Body() list:ShoppingList,@Req() req, @Res() res) {
+  createList(@Body() list:ShoppingListDto,@Req() req, @Res() res) {
     
     this.listService
       .createList(list)
