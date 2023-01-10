@@ -1,8 +1,9 @@
 import { Repository, UpdateResult, } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 import { ProductE } from 'src/entities/product.entity';
-import { Product } from 'src/dto/product/product.dto';
+import { ProductUpdate } from '../../dto/product/productUpdate.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+
 
 
 @Injectable()
@@ -21,22 +22,24 @@ export class ProductService {
   }
 
 
-  async createProduct(newProduct:Product): Promise<ProductE>{
-
- 
+  async createProduct(newProduct): Promise<ProductE>{
     return await this.produtoRepository.save(newProduct);
   }
 
 
-  async updateProduct(idProduct: string,product:ProductE): Promise<UpdateResult> {
-    return await this.produtoRepository.update(Number(idProduct),product)
+  async updateProduct(id,data:ProductUpdate): Promise<ProductE> {
+
+    const product = await this.produtoRepository.findOneOrFail({where: {id}})
+    this.produtoRepository.merge(product, data);
+    
+    return await this.produtoRepository.save(product)
     
   }
 
-  async deleteProduct(idProduct: string): Promise<any> {
-    const id = Number(idProduct)
+  async deleteProduct(id): Promise<any> {
+    
     const deleteProduct = await this.produtoRepository.delete(id);
-    console.log('Produto deletado')
+    
     return deleteProduct
   }
 

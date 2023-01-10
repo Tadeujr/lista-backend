@@ -1,7 +1,7 @@
 import { IsBoolean, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 
-export class ProductDto {
+export class ProductUpdate {
   @IsString()
   @IsNotEmpty()
   store: string;
@@ -14,7 +14,6 @@ export class ProductDto {
   @IsNotEmpty()
   brand: string;
 
-
   @IsNotEmpty()
   price: number;
 
@@ -22,15 +21,11 @@ export class ProductDto {
   @IsNotEmpty()
   buyDate: string;
 
-
-  @IsNotEmpty({message:'Enter an integer value.'})
+  @IsInt()
+  @IsNotEmpty()
   unity: number;
 
-  
   @IsBoolean()
   @IsNotEmpty()
   wasAcquired: boolean;
-  
-  @IsInt()
-  list: string;
 }

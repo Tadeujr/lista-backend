@@ -1,43 +1,49 @@
-import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
-import { RegexHelper } from 'src/util/regex';
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, PrimaryColumn, ManyToOne, OneToMany, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  BeforeInsert,
+} from 'typeorm';
 import PersonE from './person.entity';
 import { ShoppingListE } from './shoppingList.entity';
+import { hashSync } from 'bcrypt';
 
-@Entity({name:"user"})
-export class UserE{
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+@Entity({ name: 'user' })
+export class UserE {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @IsEmail()
-    @IsNotEmpty()
-    @Column()
-    email:string
+  @Column()
+  email: string;
+ 
+  @Column()
+  password: string;
 
-    @Matches(RegexHelper.password)
-    @IsString()
-    @IsNotEmpty()
-    @Column()
-    password:string;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: string;
 
-    @CreateDateColumn({ name: 'created_at' })
-    createdAt: string;
-  
-    @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: string;
-  
-    @DeleteDateColumn({ name: 'deleted_at' })
-    deletedAt: string;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @OneToOne(()=>PersonE, person => person)
-    @JoinColumn()
-    person:PersonE;
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt: string;
 
-    @IsNotEmpty()
-    @OneToMany(() => ShoppingListE,list=>list)
-    list:ShoppingListE[];
+  @OneToOne(() => PersonE, (person) => person)
+  @JoinColumn()
+  person: PersonE;
+
+  @OneToMany(() => ShoppingListE, (list) => list)
+  list: ShoppingListE[];
 
 
+  @BeforeInsert()
+  hashPassword() {
+    this.password = hashSync(this.password, 10);
+  }
 }

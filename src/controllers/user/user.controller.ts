@@ -10,8 +10,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { UserDto } from 'src/dto/user/user.dto';
 import { UserService } from 'src/services/user/user.service';
-import { UserE } from '../../entities/user.entity';
+
 
 @Controller('api/v1/user')
 export class UserController {
@@ -23,7 +24,7 @@ export class UserController {
   }
 
   @Post()
-  async storeUser(@Body() body: UserE) {
+  async storeUser(@Body() body: UserDto) {
     return await this.userService.createUser(body);
   }
 
@@ -35,7 +36,7 @@ export class UserController {
   @Put(':id')
   async updateUser(
     @Param('id', new ParseUUIDPipe()) id: string,
-    @Body() body: UserE, //cria classe DTO
+    @Body() body: UserDto, //cria classe DTO
   ) {
     return await this.userService.updateUser(id, body);
   }
@@ -43,7 +44,7 @@ export class UserController {
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   async destroyUser(@Param('id', new ParseUUIDPipe()) id: string) {
-    await this.userService.deleteUser(id);
+    return await this.userService.deleteUser(id);
   }
 }
 // criar o usuario primeiro e depois add o Person

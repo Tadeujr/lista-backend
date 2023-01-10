@@ -10,7 +10,7 @@ export class ShoppingListService {
     private readonly listRepository: Repository<ShoppingListE>,
   ) {}
   
-  //
+
   async allList(): Promise<ShoppingListE[]> {
         
     return await this.listRepository.query(`select * from "shoppingList"`);
