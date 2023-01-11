@@ -16,7 +16,7 @@ export class ShoppingListService {
     return await this.listRepository.query(`select * from "shoppingList"`);
   }
   //seach all list register from user
-  async allListForUser(idUser): Promise<ShoppingListE[]> {
+  async allListForUser(idUser:string): Promise<ShoppingListE[]> {
     return await this.listRepository.query(`select * from "shoppingList" where "userId" = '${idUser}'`)
   }
 
@@ -33,7 +33,7 @@ export class ShoppingListService {
     
   }
 
-    async deleteList(id): Promise<any> {
+    async deleteList(id:string): Promise<any> {
       
       await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
       return await this.listRepository.delete(id);

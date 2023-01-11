@@ -36,7 +36,7 @@ export class UserController {
   @Put(':id')
   async updateUser(
     @Param('id', new ParseUUIDPipe()) id: string,
-    @Body() body: UserDto, //cria classe DTO
+    @Body() body: UserDto,
   ) {
     return await this.userService.updateUser(id, body);
   }
@@ -47,5 +47,6 @@ export class UserController {
     return await this.userService.deleteUser(id);
   }
 }
+//CHOGZBDOGTZQEH
 // criar o usuario primeiro e depois add o Person
 //depois dou upadate nas infor de FK de Person em user

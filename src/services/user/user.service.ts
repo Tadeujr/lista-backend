@@ -25,20 +25,32 @@ export class UserService {
     }
   }
 
-  async createUser(data: UserDto):Promise<UserE> {
-    const user = await this.userRepository.create(data);
-    return await this.userRepository.save(user);
+  async createUser(data: UserDto): Promise<UserE> {
+    try {
+      const user = await this.userRepository.create(data);
+      return await this.userRepository.save(user);
+    } catch (error) {
+      throw new NotFoundException('O email já está cadastrado.');
+    }
   }
-
-
 
   async updateUser(id, data): Promise<UserE> {
-    const user = await this.findOneOrFail({ where: { id } });
-    this.userRepository.merge(user, data);
-    return await this.userRepository.save(user);
+    try {
+      const user = await this.userRepository.findOneOrFail({ where: { id } });
+      this.userRepository.merge(user, data);
+      return await this.userRepository.save(user);
+    } catch (error) {
+      throw new NotFoundException('Usuario não encontrado, verifique o id.');
+    }
   }
 
-  async deleteUser(id: string): Promise<any> {
-    return await this.userRepository.delete(id);
+  async deleteUser(id): Promise<any> {
+    try {
+      const user = await this.userRepository.findOneOrFail({ where: { id } });
+
+      return await this.userRepository.delete(user.id);
+    } catch (error) {
+      throw new NotFoundException('Usuario não encontrado, verifique o id.');
+    }
   }
 }

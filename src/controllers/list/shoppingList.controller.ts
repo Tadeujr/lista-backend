@@ -66,7 +66,7 @@ export class shoppinglistController {
   }
 
   @Get(":id")
-  allListUser( @Param("id") id:number,@Req() req,@Res() res){
+  allListUser( @Param("id") id:string,@Req() req,@Res() res){
     this.listService.allListForUser(id)
     .then(message => {
       res.status(HttpStatus.OK).json(message);
@@ -91,7 +91,7 @@ export class shoppinglistController {
   }
 
   @Delete(":id")
-  deleteList(@Param("id") id:number,@Req() req,@Res() res){
+  deleteList(@Param("id") id:string,@Req() req,@Res() res){
     this.listService.deleteList(id).then(message => {
       res.status(HttpStatus.OK).json(message);
     })
