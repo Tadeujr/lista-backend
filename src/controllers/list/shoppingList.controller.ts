@@ -9,17 +9,19 @@ import {
   Put,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { ShoppingListDto } from 'src/dto/list/list.dto';
 import { ShoppingListE } from 'src/entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
+import { AuthGuard } from '@nestjs/passport';
 
 
 @Controller('api/v1/list')
 export class shoppinglistController {
   constructor(private readonly listService: ShoppingListService) {}
 
-
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   createList(@Body() list:ShoppingListDto,@Req() req, @Res() res) {
     
@@ -78,6 +80,7 @@ export class shoppinglistController {
     });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(":id")
   alterList( @Param('id') id:string ,
   @Body() list: ShoppingListE,@Req() req,@Res() res){
@@ -90,8 +93,9 @@ export class shoppinglistController {
     });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(":id")
-  deleteList(@Param("id") id:string,@Req() req,@Res() res){
+  deleteList(@Param("id") id:string,@Req() req,@Res() res): void{
     this.listService.deleteList(id).then(message => {
       res.status(HttpStatus.OK).json(message);
     })

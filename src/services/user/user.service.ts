@@ -1,8 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
 import { UserE } from 'src/entities/user.entity';
-import { FindOneOptions, UpdateResult, Repository } from 'typeorm';
+import { FindOneOptions, Repository } from 'typeorm';
 import { UserDto } from '../../dto/user/user.dto';
+import { hashSync } from 'bcrypt';
+
 
 @Injectable()
 export class UserService {
@@ -27,6 +30,7 @@ export class UserService {
 
   async createUser(data: UserDto): Promise<UserE> {
     try {
+
       const user = await this.userRepository.create(data);
       return await this.userRepository.save(user);
     } catch (error) {
@@ -34,11 +38,13 @@ export class UserService {
     }
   }
 
-  async updateUser(id, data): Promise<UserE> {
+  async updateUser(id:string, data:UserUpdateDto ):Promise<UserE> {
     try {
       const user = await this.userRepository.findOneOrFail({ where: { id } });
-      this.userRepository.merge(user, data);
-      return await this.userRepository.save(user);
+      data.password = hashSync(data.password, 10)
+      const updateuser = await this.userRepository.merge(user, data);
+      
+      return await this.userRepository.save(updateuser);
     } catch (error) {
       throw new NotFoundException('Usuario não encontrado, verifique o id.');
     }
@@ -54,3 +60,5 @@ export class UserService {
     }
   }
 }
+//criar metodo de recuperar senha
+

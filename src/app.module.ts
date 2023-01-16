@@ -5,9 +5,10 @@ import PersonE from './entities/person.entity';
 import { UsersModule } from './module/users/users.module';
 import { ProductModule } from './module/product/product.module';
 import { ShoppingListModule } from './module/shopping-list/shopping-list.module';
+import { AuthModule } from './module/auth/auth.module';
 
 const modelEntity = [PersonE];
-const modules = [ProductModule, UsersModule, ShoppingListModule];
+const modules = [ProductModule, UsersModule, ShoppingListModule,AuthModule];
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ const modules = [ProductModule, UsersModule, ShoppingListModule];
     TypeOrmModule.forRoot({
       type: process.env.DATABASE_TYPE,
       host: process.env.LOCALHOST_DATABASE,
-      port: Number(process.env.PORT_DATABASE),
+      port: process.env.PORT_DATABASE,
       username: process.env.USERNAME_DATABASE,
       password: process.env.PASSWORD_DATABASE,
       database: process.env.DATABASE,

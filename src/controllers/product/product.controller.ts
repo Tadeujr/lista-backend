@@ -9,11 +9,13 @@ import {
   Put,
   Req,
   Res,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from '../../services/product/product.service';
 import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
 import { ProductUpdate } from '../../dto/product/productUpdate.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/v1/product')
 export class ProductController {
@@ -38,6 +40,7 @@ export class ProductController {
       });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   createProduct(@Body() product: ProductDto, @Req() req, @Res() res) {
     this.productService
@@ -52,6 +55,7 @@ export class ProductController {
       });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   updateProduct(
     @Param('id') id: string,
@@ -71,6 +75,7 @@ export class ProductController {
       });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
   deleteProduct(@Param('id') id: string, @Req() req, @Res() res) {
     this.productService
