@@ -10,6 +10,7 @@ export class UserUpdateDto {
       'A senha deve conter letras maiúsculas minúsculas, números e caracteres especiais',
   })
   @IsNotEmpty()
+  @IsEmail()
   password: string;
 
   

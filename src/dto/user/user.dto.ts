@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, Matches, IsNumber } from 'class-validator';
 import { RegexHelper } from 'src/util/regex';
 
 export class UserDto {
@@ -14,7 +14,6 @@ export class UserDto {
   @IsNotEmpty()
   password: string;
 
-  @IsString()
   @IsNotEmpty()
   person: any;
 }

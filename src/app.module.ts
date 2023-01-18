@@ -6,9 +6,10 @@ import { UsersModule } from './module/users/users.module';
 import { ProductModule } from './module/product/product.module';
 import { ShoppingListModule } from './module/shopping-list/shopping-list.module';
 import { AuthModule } from './module/auth/auth.module';
+import { PersonModule } from './module/person/person.module';
 
-const modelEntity = [PersonE];
-const modules = [ProductModule, UsersModule, ShoppingListModule,AuthModule];
+
+const modules = [PersonModule, UsersModule,ProductModule, ShoppingListModule,AuthModule];
 
 @Module({
   imports: [
@@ -23,7 +24,6 @@ const modules = [ProductModule, UsersModule, ShoppingListModule,AuthModule];
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: Boolean(process.env.SYNCHRONIZE_DATABASE),
     } as TypeOrmModuleOptions),
-    TypeOrmModule.forFeature([...modelEntity]),
     ...modules,
   ],
   controllers: [],

@@ -33,10 +33,10 @@ export class UserE {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
-
-  @OneToOne(() => PersonE, (person) => person)
+  
+  @OneToOne((type) => PersonE, (id) => UserE)
   @JoinColumn()
-  person: PersonE;
+  person: string;
 
   @OneToMany(() => ShoppingListE, (list) => list)
   list: ShoppingListE[];

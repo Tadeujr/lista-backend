@@ -1,11 +1,8 @@
-import { IsArray, IsInt, IsNotEmpty, IsString } from 'class-validator';
 import {
   Entity,
   Column,
   OneToMany,
   PrimaryGeneratedColumn,
-  JoinColumn,
-  OneToOne,
   ManyToOne,
 } from 'typeorm';
 import { ProductE } from './product.entity';

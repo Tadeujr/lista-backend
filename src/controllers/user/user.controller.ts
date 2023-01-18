@@ -26,10 +26,10 @@ export class UserController {
     return await this.userService.listUsers();
   }
 
-  @Post()
-  async storeUser(@Body() body: UserDto) {
-    return await this.userService.createUser(body);
-  }
+  // @Post()
+  // async storeUser(@Body() body: UserDto) {
+  //   return await this.userService.createUser(body);
+  // }
 
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
@@ -37,7 +37,7 @@ export class UserController {
     return await this.userService.findOneOrFail({ where: { id } });
   }
 
-  //@UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'))
   @Patch(':id')
   async updateUser(
     @Param('id', new ParseUUIDPipe()) id: string,
