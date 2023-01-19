@@ -1,39 +1,47 @@
 import { IsString, IsNotEmpty, IsEmail, Matches } from 'class-validator';
 import { RegexHelper } from 'src/util/regex';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class AccountDto{
-    @IsString()
-    @IsNotEmpty()
-    name: string;
-  
-    @IsString()
-    @IsNotEmpty()
-    city: string;
-  
-    @IsString()
-    @IsNotEmpty()
-    uf: string;
-  
-    @IsString()
-    @IsNotEmpty()
-    zipcode: string;
-  
-    @IsString()
-    userFk: any;
+export class AccountDto {
+  @ApiProperty({example:"Tadeu da penha moraes junior"})
+  @IsString()
+  @IsNotEmpty()
+  name: string;
 
-    @IsEmail()
-    @IsNotEmpty()
-    email: string;
-  
-    @IsString()
-    @Matches(RegexHelper.password, {
-      message:
-        'A senha deve conter letras maiúsculas minúsculas, números e caracteres especiais',
-    })
-    @IsNotEmpty()
-    password: string;
-  
- 
-    @IsString()
-    person?: string;
+  @ApiProperty({})
+  @IsString()
+  @IsNotEmpty()
+  city: string;
+
+  @ApiProperty({})
+  @IsString()
+  @IsNotEmpty()
+  uf: string;
+
+  @ApiProperty({})
+  @IsString()
+  @IsNotEmpty()
+  zipcode: string;
+
+
+  @IsString()
+  userFk: any;
+
+  @ApiProperty({})
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @ApiProperty({})
+  @IsString()
+  @Matches(RegexHelper.password, {
+    message:
+      'A senha deve conter letras maiúsculas minúsculas, números e caracteres especiais',
+  })
+  @IsNotEmpty()
+  password: string;
+
+
+  @IsString()
+  private person?: string;
 }

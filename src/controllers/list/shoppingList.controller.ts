@@ -15,8 +15,9 @@ import { ShoppingListDto } from 'src/dto/list/list.dto';
 import { ShoppingListE } from 'src/entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiTags } from '@nestjs/swagger';
 
-
+@ApiTags('Shoppinglist')
 @Controller('api/v1/list')
 export class shoppinglistController {
   constructor(private readonly listService: ShoppingListService) {}

@@ -12,11 +12,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ProductService } from '../../services/product/product.service';
-import { ApiBody, ApiParam, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
 import { ProductUpdate } from '../../dto/product/productUpdate.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { AccountDto } from '../../dto/account/account.dto';
 
+@ApiTags('Product')
 @Controller('api/v1/product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
@@ -28,8 +30,9 @@ export class ProductController {
   //   description: 'Should be an id of a post that exists in the database',
 
   // })
+  
   listProducts(@Req() req, @Res() res) {
-    //console.log(req)
+
     this.productService
       .listProducts()
       .then((message) => {
@@ -40,6 +43,7 @@ export class ProductController {
       });
   }
 
+  
   @UseGuards(AuthGuard('jwt'))
   @Post()
   createProduct(@Body() product: ProductDto, @Req() req, @Res() res) {
