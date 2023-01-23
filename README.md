@@ -1,6 +1,6 @@
 ## Descrição
 
-Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS como framework
+Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS.
 
 ## Instalação
 
@@ -9,13 +9,11 @@ $ npm install
 ```
 
 ## Rodando a aplicação
-
+Configure o arquivo env. como no exemplo contido no repositório <a href="https://github.com/Tadeujr/lista-backend/blob/development/.env.example">Link</a> e escolha alguns dos camandos para executar.
 ```bash
 # development
-$ npm run start
-
-# watch mode
 $ npm run start:dev
+
 
 # production mode
 $ npm run start:prod
