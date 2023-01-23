@@ -6,7 +6,7 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 
 @ApiTags('Account')
-@Controller('api/v1/')
+@Controller()
 export class PersonController {
     constructor(private readonly personService: PersonService){}
 

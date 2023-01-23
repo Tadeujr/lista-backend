@@ -1,7 +1,7 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, IsNumber } from 'class-validator';
 
 export class ShoppingListDto {
-  @IsInt()
+  @IsNumber()
   @IsNotEmpty()
   total: number;
 

@@ -17,7 +17,7 @@ export default class PersonDto {
   @IsNotEmpty()
   zipcode: string;
 
-  @IsString()
+
   userFk?: string;
 
 }

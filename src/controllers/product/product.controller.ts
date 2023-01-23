@@ -12,27 +12,21 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ProductService } from '../../services/product/product.service';
-import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
 import { ProductUpdate } from '../../dto/product/productUpdate.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AccountDto } from '../../dto/account/account.dto';
 
 @ApiTags('Product')
-@Controller('api/v1/product')
+@Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
-
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth('access-token') //edit here
   @Get()
-  // @ApiParam({
-  //   name: 'any',
-  //   required: false,
-  //   description: 'Should be an id of a post that exists in the database',
-
-  // })
-  
+  @ApiOperation({summary:"listar todos os produtos de determinada lista"})
   listProducts(@Req() req, @Res() res) {
-
     this.productService
       .listProducts()
       .then((message) => {

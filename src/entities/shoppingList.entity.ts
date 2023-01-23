@@ -22,6 +22,7 @@ export class ShoppingListE {
   @ManyToOne(() => UserE, (user) => user)
   user: UserE;
 
-  @OneToMany(() => ProductE, (product) => product)
+  @OneToMany(() => ProductE, (products) => products)
   products: ProductE[];
-}
+}  
+

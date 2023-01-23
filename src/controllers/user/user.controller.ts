@@ -10,18 +10,22 @@ import {
   Patch,
   Post,
   Put,
+  Version,
 } from '@nestjs/common';
 import { UserDto } from 'src/dto/user/user.dto';
 import { UserService } from 'src/services/user/user.service';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('User')
-@Controller('api/v1/user')
+@Controller('user')
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth('access-token')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+  //Remover Rota
   @UseGuards(AuthGuard('jwt'))
   @Get()
   async indexUsers() {
@@ -33,13 +37,13 @@ export class UserController {
   //   return await this.userService.createUser(body);
   // }
 
-  @UseGuards(AuthGuard('jwt'))
+
   @Get(':id')
   async showUser(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.userService.findOneOrFail({ where: { id } });
   }
 
-  @UseGuards(AuthGuard('jwt'))
+
   @Patch(':id')
   async updateUser(
     @Param('id', new ParseUUIDPipe()) id: string,

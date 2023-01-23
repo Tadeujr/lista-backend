@@ -24,7 +24,7 @@ export class AccountDto {
   zipcode: string;
 
 
-  @IsString()
+
   userFk: any;
 
   @ApiProperty({})
@@ -42,6 +42,6 @@ export class AccountDto {
   password: string;
 
 
-  @IsString()
+
   private person?: string;
 }

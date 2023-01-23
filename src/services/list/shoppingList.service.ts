@@ -22,7 +22,7 @@ export class ShoppingListService {
 
   //antes de criar a lista verificar se já existe a data criada e adicionar na lista existente 
   async createList(newList): Promise<ShoppingListE> {
-    
+    console.log(newList)
     return await this.listRepository.save(newList);
   }
 

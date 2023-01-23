@@ -18,16 +18,16 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Shoppinglist')
-@Controller('api/v1/list')
+@Controller('shoppinglist')
 export class shoppinglistController {
   constructor(private readonly listService: ShoppingListService) {}
 
   @UseGuards(AuthGuard('jwt'))
-  @Post()
-  createList(@Body() list:ShoppingListDto,@Req() req, @Res() res) {
+  @Post('newlist')
+  createList(@Body() data:ShoppingListDto,@Req() req, @Res() res) {
     
     this.listService
-      .createList(list)
+      .createList(data)
       .then((message) => {
         res.status(HttpStatus.CREATED).json(message);
       })
