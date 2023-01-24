@@ -3,36 +3,33 @@ import { RegexHelper } from 'src/util/regex';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class AccountDto {
-  @ApiProperty({example:"Tadeu da penha moraes junior"})
+  @ApiProperty()//{example:"Tadeu da penha moraes junior"}
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @ApiProperty({})
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   city: string;
 
-  @ApiProperty({})
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   uf: string;
 
-  @ApiProperty({})
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   zipcode: string;
 
 
-
-  userFk: any;
-
-  @ApiProperty({})
+  @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty({})
+  @ApiProperty()
   @IsString()
   @Matches(RegexHelper.password, {
     message:
@@ -41,7 +38,4 @@ export class AccountDto {
   @IsNotEmpty()
   password: string;
 
-
-
-  private person?: string;
 }

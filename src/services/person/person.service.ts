@@ -37,9 +37,9 @@ export class PersonService {
         const person = new PersonDto()
         person.name = data.name
         person.city = data.city;
-        person.uf= data.uf,
-        person.zipcode= data.zipcode,
-        person.userFk = data.userFk
+        person.uf= data.uf;
+        person.zipcode= data.zipcode;
+        
 
         
         const newPerson = await this.personRepository.save(person)
