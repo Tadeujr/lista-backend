@@ -1,3 +1,4 @@
+import { type } from 'os';
 import {
   Entity,
   Column,
@@ -13,7 +14,7 @@ export class ShoppingListE {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('float')
   total: number;
 
   @Column()

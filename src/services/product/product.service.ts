@@ -30,7 +30,8 @@ export class ProductService {
   async updateProduct(id,data:ProductUpdate): Promise<ProductE> {
 
     const product = await this.produtoRepository.findOneOrFail({where: {id}})
-    this.produtoRepository.merge(product, data);
+    
+    await this.produtoRepository.merge(product, data);
     
     return await this.produtoRepository.save(product)
     

@@ -11,11 +11,12 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
-import { ShoppingListDto } from 'src/dto/list/list.dto';
+import { ShoppingListDto } from 'src/dto/list/shoppingList.dto';
 import { ShoppingListE } from 'src/entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
+import { ShoppingListUpdateDto } from 'src/dto/list/shoppingListUpdate.dto';
 
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')
@@ -84,7 +85,7 @@ export class shoppinglistController {
   @UseGuards(AuthGuard('jwt'))
   @Put(":id")
   alterList( @Param('id') id:string ,
-  @Body() list: ShoppingListE,@Req() req,@Res() res){
+  @Body() list: ShoppingListUpdateDto,@Req() req,@Res() res){
     this.listService.updateList(id,list).then(message =>{
       res.status(HttpStatus.OK).json(message)
     }).catch(() => {

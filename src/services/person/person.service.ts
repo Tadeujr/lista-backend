@@ -22,7 +22,7 @@ export class PersonService {
     
 
       
-    async newPerson(data:any):Promise<UserE>{
+    async newPerson(data:AccountDto):Promise<UserE>{
         let account = this.newAccount(data)
         return account;
     }
@@ -42,7 +42,7 @@ export class PersonService {
         
 
         
-        const newPerson = await this.personRepository.save(person)
+        const newPerson = await this.personRepository.save(person);
         
 
         const newUser = new UserDto()
@@ -51,14 +51,14 @@ export class PersonService {
         newUser.person = newPerson.id; //receiving person id
 
 
-        return await this.createUser(newUser)
+        return await this.createUser(newUser);
         
     }
 
 
     private async createUser(user:UserDto):Promise<UserE>{
         let newUser = await this.userService.createUser(user);
-        return  newUser
+        return  newUser;
     
     }
 }
