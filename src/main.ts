@@ -22,15 +22,14 @@ async function bootstrap() {
     .setDescription('Api de consulta da aplicação web de lista de supermecado')
     .setVersion('1.0')
     .addBearerAuth( { 
-      // I was also testing it without prefix 'Bearer ' before the JWT
       description: `Inserir token gerado na rota de login, apoós se registrar`,
       name: 'Authorization',
-      bearerFormat: 'Bearer', // I`ve tested not to use this field, but the result was the same
+      bearerFormat: 'Bearer', 
       scheme: 'Bearer',
-      type: 'http', // I`ve attempted type: 'apiKey' too
+      type: 'http',
       in: 'Header'
     },
-    'access-token', // This name here is important for matching up with @ApiBearerAuth() in your controller!)
+    'access-token',
     )
     .build();
   

@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { hashSync } from 'bcrypt';
 import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
 import { UserE } from 'src/entities/user.entity';
 import { FindOneOptions, Repository } from 'typeorm';
 import { UserDto } from '../../dto/user/user.dto';
-import { hashSync } from 'bcrypt';
 
 
 @Injectable()

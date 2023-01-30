@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ShoppingListE } from './shoppingList.entity';
 
 @Entity({ name: 'product' })
@@ -21,8 +21,11 @@ export class ProductE {
   @Column()
   buyDate: string;
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'float' })
   unity: number;
+
+  @Column()
+  commercialUnit: string;
 
   @Column({ type: 'boolean' })
   wasAcquired: boolean;

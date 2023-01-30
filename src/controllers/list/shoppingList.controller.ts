@@ -9,14 +9,13 @@ import {
   Put,
   Req,
   Res,
-  UseGuards,
+  UseGuards
 } from '@nestjs/common';
-import { ShoppingListDto } from 'src/dto/list/shoppingList.dto';
-import { ShoppingListE } from 'src/entities/shoppingList.entity';
-import { ShoppingListService } from '../../services/list/shoppingList.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
+import { ShoppingListDto } from 'src/dto/list/shoppingList.dto';
 import { ShoppingListUpdateDto } from 'src/dto/list/shoppingListUpdate.dto';
+import { ShoppingListService } from '../../services/list/shoppingList.service';
 
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')

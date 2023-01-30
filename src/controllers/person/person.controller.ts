@@ -1,8 +1,7 @@
 import { Body, Controller, Get, HttpStatus, Post, Req, Res } from '@nestjs/common';
-import PersonDto from 'src/dto/person/person.dto';
-import { PersonService } from '../../services/person/person.service';
-import { AccountDto } from '../../dto/account/account.dto';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { AccountDto } from '../../dto/account/account.dto';
+import { PersonService } from '../../services/person/person.service';
 
 
 @ApiTags('Account')

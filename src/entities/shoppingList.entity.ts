@@ -1,10 +1,6 @@
-import { type } from 'os';
 import {
-  Entity,
-  Column,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  ManyToOne,
+  Column, Entity, ManyToOne, OneToMany,
+  PrimaryGeneratedColumn
 } from 'typeorm';
 import { ProductE } from './product.entity';
 import { UserE } from './user.entity';
@@ -20,7 +16,8 @@ export class ShoppingListE {
   @Column()
   dateList: string;
 
-  @ManyToOne(() => UserE, (user) => user)
+  
+  @ManyToOne(() => UserE, (user) => user,)
   user: UserE;
 
   @OneToMany(() => ProductE, (products) => products)

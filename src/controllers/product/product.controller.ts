@@ -9,14 +9,13 @@ import {
   Put,
   Req,
   Res,
-  UseGuards,
+  UseGuards
 } from '@nestjs/common';
-import { ProductService } from '../../services/product/product.service';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
 import { ProductUpdate } from '../../dto/product/productUpdate.dto';
-import { AuthGuard } from '@nestjs/passport';
-import { AccountDto } from '../../dto/account/account.dto';
+import { ProductService } from '../../services/product/product.service';
 
 @ApiTags('Product')
 @Controller('product')

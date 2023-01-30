@@ -1,6 +1,6 @@
-import { IsString, IsNotEmpty, IsEmail, Matches } from 'class-validator';
-import { RegexHelper } from 'src/util/regex';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
+import { RegexHelper } from 'src/util/regex';
 
 export class AccountDto {
   @ApiProperty()//{example:"Tadeu da penha moraes junior"}

@@ -7,17 +7,12 @@ import {
   HttpStatus,
   Param,
   ParseUUIDPipe,
-  Patch,
-  Post,
-  Put,
-  Version,
+  Patch, UseGuards
 } from '@nestjs/common';
-import { UserDto } from 'src/dto/user/user.dto';
-import { UserService } from 'src/services/user/user.service';
-import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
+import { UserService } from 'src/services/user/user.service';
 
 @ApiTags('User')
 @Controller('user')
@@ -59,6 +54,4 @@ export class UserController {
     return await this.userService.deleteUser(id);
   }
 }
-//CHOGZBDOGTZQEH
-// criar o usuario primeiro e depois add o Person
-//depois dou upadate nas infor de FK de Person em user
+

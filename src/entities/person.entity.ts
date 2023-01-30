@@ -1,8 +1,5 @@
 import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToOne,
+  Column, Entity, OneToOne, PrimaryGeneratedColumn
 } from 'typeorm';
 import { UserE } from './user.entity';
 

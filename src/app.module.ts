@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import PersonE from './entities/person.entity';
-import { UsersModule } from './module/users/users.module';
-import { ProductModule } from './module/product/product.module';
-import { ShoppingListModule } from './module/shopping-list/shopping-list.module';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AuthModule } from './module/auth/auth.module';
 import { PersonModule } from './module/person/person.module';
+import { ProductModule } from './module/product/product.module';
+import { ShoppingListModule } from './module/shopping-list/shopping-list.module';
+import { UsersModule } from './module/users/users.module';
 
 
 const modules = [PersonModule, UsersModule,ProductModule, ShoppingListModule,AuthModule];

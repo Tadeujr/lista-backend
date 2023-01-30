@@ -1,8 +1,8 @@
-import { Repository, UpdateResult, } from 'typeorm';
 import { Injectable } from '@nestjs/common';
-import { ProductE } from 'src/entities/product.entity';
-import { ProductUpdate } from '../../dto/product/productUpdate.dto';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ProductE } from 'src/entities/product.entity';
+import { Repository } from 'typeorm';
+import { ProductUpdate } from '../../dto/product/productUpdate.dto';
 
 
 
@@ -31,9 +31,9 @@ export class ProductService {
 
     const product = await this.produtoRepository.findOneOrFail({where: {id}})
     
-    await this.produtoRepository.merge(product, data);
+    const prodctUp = await this.produtoRepository.merge(product, data);
     
-    return await this.produtoRepository.save(product)
+    return await this.produtoRepository.save(prodctUp)
     
   }
 

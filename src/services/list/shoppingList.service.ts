@@ -1,9 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ShoppingListDto } from 'src/dto/list/shoppingList.dto';
 import { Repository, UpdateResult } from 'typeorm';
-import { ShoppingListE } from '../../entities/shoppingList.entity';
 import { ShoppingListUpdateDto } from '../../dto/list/shoppingListUpdate.dto';
+import { ShoppingListE } from '../../entities/shoppingList.entity';
 
 @Injectable()
 export class ShoppingListService {
@@ -35,32 +34,19 @@ export class ShoppingListService {
     
   }
 
-    async deleteList(id:string): Promise<any> {
+  async deleteList(id:string): Promise<any> {
       
       await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
       return await this.listRepository.delete(id);
     }
 
 
-    async updateList(id: string,list:ShoppingListUpdateDto):Promise<UpdateResult> {
-      //const idI = Number(id);
-      try {
-        //find primary key list
-        const listDb = await this.listRepository.query(`select * from public."shoppingList" where id = ${id};`)
-
-        if(listDb.user = list.user){
-          const listUp =   await this.listRepository.createQueryBuilder()
-            .update(ShoppingListE)
-            .set({ total: list.total, dateList: list.dateList })
-            .where("id = :id", { id: id })
-            .execute();
-            
-            return listUp;
-        }
-        
-      } catch (error) {
-        throw new NotFoundException(error.message);
-      }
+  async updateList(id: string,list:ShoppingListUpdateDto):Promise<UpdateResult> {  
+      return await this.listRepository.createQueryBuilder()
+                       .update(ShoppingListE)
+                       .set({ total: list.total, dateList: list.dateList })
+                       .where("id = :id and userId = :user", { id: id,user:list.user})
+                       .execute();
     }
  
   }

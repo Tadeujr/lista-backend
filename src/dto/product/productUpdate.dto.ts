@@ -1,5 +1,4 @@
-import { ApiProperty, OmitType } from '@nestjs/swagger';
-import { IsBoolean, IsInt, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { OmitType } from '@nestjs/swagger';
 import { ProductDto } from './product.dto';
 
 
