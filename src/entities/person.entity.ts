@@ -21,5 +21,5 @@ export default class PersonE {
   zipcode: string;
 
   @OneToOne(() => UserE, (person) => person)
-  userFk: string;
+  userFk: UserE;
 }

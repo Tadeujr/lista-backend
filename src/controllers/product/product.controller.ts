@@ -12,11 +12,10 @@ import {
   UseGuards
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
-import { ProductUpdate } from '../../dto/product/productUpdate.dto';
+import { ProductUpdate } from 'src/dto/product/productUpdate.dto';
 import { ProductService } from '../../services/product/product.service';
-
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {
@@ -38,10 +37,14 @@ export class ProductController {
 
   
   @UseGuards(AuthGuard('jwt'))
+  @ApiBody({
+    isArray: true,
+    type: ProductDto,
+    })
   @Post()
-  createProduct(@Body() product: ProductDto, @Req() req, @Res() res) {
+  createProduct(@Body() body: ProductDto[], @Req() req, @Res() res) {
     this.productService
-      .createProduct(product)
+      .createProduct(body)
       .then((message) => {
         res.status(HttpStatus.CREATED).json(message);
       })

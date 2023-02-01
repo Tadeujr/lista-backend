@@ -7,7 +7,7 @@ import {
   HttpStatus,
   Param,
   ParseUUIDPipe,
-  Patch, UseGuards
+  Patch, Res, UseGuards
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -34,8 +34,18 @@ export class UserController {
 
 
   @Get(':id')
-  async showUser(@Param('id', new ParseUUIDPipe()) id: string) {
-    return await this.userService.findOneOrFail({ where: { id } });
+  async showUser(@Param('id', new ParseUUIDPipe()) id: string,@Res() res) {
+    
+  return  await this.userService.findOneOrFail({ where: { id } })
+    .then((message) => {
+      res.status(HttpStatus.CREATED).json(message);
+    })
+    .catch(() => {
+      res
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message:"Erro ao cria lista Verifique os campos do objeto criado"});
+    });
+    //return await this.userService.findOneOrFail({ where: { id } });
   }
 
 

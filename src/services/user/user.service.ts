@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { hashSync } from 'bcrypt';
 import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
 import { UserE } from 'src/entities/user.entity';
-import { FindOneOptions, Repository } from 'typeorm';
+import { FindOneOptions, Repository, DeleteResult } from 'typeorm';
 import { UserDto } from '../../dto/user/user.dto';
 
 
@@ -50,7 +50,7 @@ export class UserService {
     }
   }
 
-  async deleteUser(id): Promise<any> {
+  async deleteUser(id): Promise<DeleteResult> {
     try {
       const user = await this.userRepository.findOneOrFail({ where: { id } });
 
@@ -60,5 +60,5 @@ export class UserService {
     }
   }
 }
-//criar metodo de recuperar senha
+//criar metodo de resetar senha
 

@@ -37,5 +37,5 @@ export class PersonController {
             .json({ message: HttpStatus.FORBIDDEN });
         });
   } 
-      //  @UseGuards(AuthGuard('jwt'))
+      
 }

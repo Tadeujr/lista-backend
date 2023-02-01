@@ -24,9 +24,9 @@ export class shoppinglistController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('newlist')
-  createList(@Body() data:ShoppingListDto,@Req() req, @Res() res) {
+ async createList(@Body() data:ShoppingListDto,@Req() req, @Res() res) {
     
-    this.listService
+   await  this.listService
       .createList(data)
       .then((message) => {
         res.status(HttpStatus.CREATED).json(message);

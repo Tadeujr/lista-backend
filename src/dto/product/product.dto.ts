@@ -1,7 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-
 export class ProductDto {
   @IsString()
   @IsNotEmpty()
@@ -14,12 +13,9 @@ export class ProductDto {
   productName: string;
 
   @IsString()
-  @IsNotEmpty()
   @ApiProperty()
   brand: string;
 
-
-  @IsNumber()
   @ApiProperty()
   price: number;
 
@@ -28,20 +24,19 @@ export class ProductDto {
   @ApiProperty()
   buyDate: string;
 
-
-  @IsNotEmpty({message:'Enter an integer value.'})
+  @IsNotEmpty({ message: 'Enter an integer value.' })
   @ApiProperty()
   unity: number;
 
   @ApiProperty()
   commercialUnit?: string;
-  
+
   @IsBoolean()
   @IsNotEmpty()
   @ApiProperty()
   wasAcquired: boolean;
-  
+
   @IsNumber()
   @ApiProperty()
-  list: number;
+  listId: number;
 }

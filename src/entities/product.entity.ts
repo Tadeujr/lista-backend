@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ShoppingListE } from './shoppingList.entity';
 
 @Entity({ name: 'product' })
@@ -31,5 +31,6 @@ export class ProductE {
   wasAcquired: boolean;
 
   @ManyToOne(() => ShoppingListE, (list) => list)
+  @JoinColumn({ name: "list" })
   list: ShoppingListE;
 }

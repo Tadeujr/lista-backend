@@ -26,9 +26,9 @@ export class UserE {
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
   
-  @OneToOne((type) => PersonE, (id) => UserE)
+  @OneToOne(() => PersonE, (user) => user)
   @JoinColumn()
-  person: string;
+  person: PersonE;
 
   @OneToMany(() => ShoppingListE, (list) => list)
   list: ShoppingListE[];

@@ -39,7 +39,12 @@ export class ShoppingListService {
       await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
       return await this.listRepository.delete(id);
     }
-
+  
+  async findList(id:string): Promise<any> {
+    
+    await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
+    return await this.listRepository.delete(id);
+  }
 
   async updateList(id: string,list:ShoppingListUpdateDto):Promise<UpdateResult> {  
       return await this.listRepository.createQueryBuilder()
