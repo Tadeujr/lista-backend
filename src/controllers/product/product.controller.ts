@@ -12,16 +12,19 @@ import {
   UseGuards
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
 import { ProductUpdate } from 'src/dto/product/productUpdate.dto';
+import { ProductE } from 'src/entities/product.entity';
 import { ProductService } from '../../services/product/product.service';
+
 @ApiTags('Product')
 @Controller('product')
+@ApiBearerAuth('access-token') //edit here
+@UseGuards(AuthGuard('jwt'))
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth('access-token') //edit here
+  
   @Get()
   @ApiOperation({summary:"listar todos os produtos de determinada lista"})
   listProducts(@Req() req, @Res() res) {
@@ -36,13 +39,13 @@ export class ProductController {
   }
 
   
-  @UseGuards(AuthGuard('jwt'))
+  @ApiOkResponse()
   @ApiBody({
     isArray: true,
     type: ProductDto,
     })
   @Post()
-  createProduct(@Body() body: ProductDto[], @Req() req, @Res() res) {
+  createProduct(@Body() body: ProductE[], @Req() req, @Res() res) {
     this.productService
       .createProduct(body)
       .then((message) => {
@@ -55,7 +58,7 @@ export class ProductController {
       });
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  
   @Put(':id')
   updateProduct(
     @Param('id') id: string,
@@ -75,9 +78,9 @@ export class ProductController {
       });
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  
   @Delete(':id')
-  deleteProduct(@Param('id') id: string, @Req() req, @Res() res) {
+  deleteProduct(@Param('id') id: number, @Req() req, @Res() res) {
     this.productService
       .deleteProduct(id)
       .then((message) => {

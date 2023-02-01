@@ -4,7 +4,7 @@ import { ShoppingListE } from './shoppingList.entity';
 @Entity({ name: 'product' })
 export class ProductE {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   store: string;

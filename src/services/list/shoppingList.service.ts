@@ -40,10 +40,10 @@ export class ShoppingListService {
       return await this.listRepository.delete(id);
     }
   
-  async findList(id:string): Promise<any> {
+  async findList(id:number): Promise<ShoppingListE[]> {
     
-    await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
-    return await this.listRepository.delete(id);
+    return await this.listRepository.query(`select * from "shoppingList" where id ='${id}'`)
+    
   }
 
   async updateList(id: string,list:ShoppingListUpdateDto):Promise<UpdateResult> {  
@@ -51,6 +51,14 @@ export class ShoppingListService {
                        .update(ShoppingListE)
                        .set({ total: list.total, dateList: list.dateList })
                        .where("id = :id and userId = :user", { id: id,user:list.user})
+                       .execute();
+    }
+
+    async updateValorList(id: number,valor:number):Promise<UpdateResult> {  
+      return await this.listRepository.createQueryBuilder()
+                       .update(ShoppingListE)
+                       .set({ total: valor})
+                       .where("id = :id", { id: id})
                        .execute();
     }
  

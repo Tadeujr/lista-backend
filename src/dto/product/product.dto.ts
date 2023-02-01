@@ -38,5 +38,5 @@ export class ProductDto {
 
   @IsNumber()
   @ApiProperty()
-  listId: number;
+  list: number;
 }
