@@ -32,7 +32,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-# Documentação da Api (em andamento)
+# Documentação da Api
 http://localhost:3001/api#/
 
 # Populando a base
