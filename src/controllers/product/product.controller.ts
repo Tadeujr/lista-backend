@@ -14,7 +14,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
-import { ProductUpdate } from 'src/dto/product/productUpdate.dto';
 import { ProductE } from 'src/entities/product.entity';
 import { ProductService } from '../../services/product/product.service';
 
@@ -61,8 +60,8 @@ export class ProductController {
   
   @Put(':id')
   updateProduct(
-    @Param('id') id: string,
-    @Body() body: ProductUpdate,
+    @Param('id') id: number,
+    @Body() body: ProductDto,
     @Req() req,
     @Res() res,
   ) {
@@ -74,7 +73,7 @@ export class ProductController {
       .catch(() => {
         res
           .status(HttpStatus.FORBIDDEN)
-          .json({ message: 'Erro ao atualizar usuarios' });
+          .json({ message: 'Erro ao atualizar o(s) produtro(s)' });
       });
   }
 

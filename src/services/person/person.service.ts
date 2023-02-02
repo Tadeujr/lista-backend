@@ -33,15 +33,13 @@ export class PersonService {
     
 
 
-    private async newAccount(data:AccountDto){
+    private async newAccount(data:AccountDto):Promise<UserE>{
         const person = new PersonDto()
         person.name = data.name
         person.city = data.city;
         person.uf= data.uf;
         person.zipcode= data.zipcode;
-        
 
-        
         const newPerson = await this.personRepository.save(person);
         
 

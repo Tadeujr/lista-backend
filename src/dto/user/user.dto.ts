@@ -5,6 +5,10 @@ import { RegexHelper } from 'src/util/regex';
 export class UserDto {
   @IsEmail()
   @IsNotEmpty()
+  @Matches(RegexHelper.email, {
+    message:
+      'Insira um email válido.',
+  })
   @ApiProperty()
   email: string;
 

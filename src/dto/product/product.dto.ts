@@ -1,7 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ProductE } from 'src/entities/product.entity';
 
 export class ProductDto {
+  id?:number;
+  
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
@@ -37,6 +40,6 @@ export class ProductDto {
   wasAcquired: boolean;
 
   @IsNumber()
-  @ApiProperty()
-  list: number;
+  @ApiProperty({type:Number})
+  list: ProductE;
 }

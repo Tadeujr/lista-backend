@@ -11,7 +11,7 @@ export class AuthService {
         private readonly jwtService: JwtService,
       ) {}
 
-  async login(user) {
+  async login(user):Promise<Object> {
     const payload = { sub: user.id, email: user.email };
 
     return {
@@ -19,7 +19,7 @@ export class AuthService {
     };
   }
 
-  async validateUser(email: string, password: string) {
+  async validateUser(email: string, password: string):Promise<UserE> {
     let user: UserE;
     try {
       user = await this.userService.findOneOrFail({where:{ email }});

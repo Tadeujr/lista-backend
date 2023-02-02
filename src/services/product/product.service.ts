@@ -1,10 +1,9 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductUpdate } from 'src/dto/product/productUpdate.dto';
 import { ProductE } from 'src/entities/product.entity';
-import { Repository } from 'typeorm';
-import { ShoppingListService } from '../list/shoppingList.service';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { ProductDto } from '../../dto/product/product.dto';
+import { ShoppingListService } from '../list/shoppingList.service';
 
 @Injectable()
 export class ProductService {
@@ -23,31 +22,44 @@ export class ProductService {
     const products =  await this.produtoRepository.save(newProducts);
 
     //updating ShoppingList (SUM)
-    this.updateList(true,products)
+    await this.updateList(true,products)
     
     return products;
   }
 
-  //melhorar
-  async updateProduct(id, data: ProductUpdate): Promise<ProductE> {
-    const product = await this.produtoRepository.findOneOrFail({
-      where: { id },
-    });
+  
 
-    const prodctUp = await this.produtoRepository.merge(product, data);
-
-    return await this.produtoRepository.save(prodctUp);
+  async updateProduct(id:number, data: ProductDto): Promise<ProductE> {
+    let valor:number;
+        
+    const product = await this.produtoRepository.findOneOrFail({where:{id}})
+    
+      if(data.price > product.price){
+        valor = (Number(data.price) - Number(product.price));
+        
+        await this.updateValorList(true,Number(data.list),valor)
+      }else if(data.price < product.price){ 
+        valor = (Number(product.price) - Number(data.price));
+        
+        await this.updateValorList(false,Number(data.list),valor)
+      }
+      
+    let productUp = await this.produtoRepository.merge(product, data);
+  
+    return await this.produtoRepository.save(productUp);
   }
 
-  async deleteProduct(id:number): Promise<any> {
-    // this.updateList(true,products),idList:number
+  async deleteProduct(id:number): Promise<DeleteResult> {
+    
+    const products = await this.produtoRepository.query(`select * from product where id = ${id}`)
     const deleteProduct = await this.produtoRepository.delete(id);
-
+    
+    await this.updateList(false,products)
     return deleteProduct;
   }
 
   //true for sum or false for decrease 
-  private async updateList(operation:boolean,products:ProductE[]){
+  private async updateList(operation:boolean,products:ProductE[]):Promise<any>{
    
     let valorList = 0.0;
     //search in database for update valor total
@@ -59,7 +71,7 @@ export class ProductService {
       return acum += item.price
     },0.0).toFixed(2))
 
-
+    
     //updating the total  in "ShoppingList"
     if(operation){
       await this.shoppingListService.updateValorList(Number(products[0].list), (valorList + totalProduct))
@@ -67,15 +79,20 @@ export class ProductService {
     }else{
       await this.shoppingListService.updateValorList(Number(products[0].list), (valorList - totalProduct))
     }
-
-
-
-    
-
-    
+  
   }
 
-  private operatorList(){
 
+  async updateValorList(operation:boolean,listId:number,valor:number):Promise<any>{
+    const list = await this.shoppingListService.findList(Number(listId));
+    
+    //updating the total  in "ShoppingList"
+    if(operation){
+      await this.shoppingListService.updateValorList(listId, (list[0].total + valor))
+      
+    }else{
+      await this.shoppingListService.updateValorList(listId, (list[0].total- valor))
+    }
   }
+
 }

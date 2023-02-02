@@ -26,7 +26,6 @@ export class PersonController {
 
     @Get('person')
     allPerson( @Req() req, @Res() res) {
-      console.log()
       this.personService.allPerson()
         .then((message) => {
           res.status(HttpStatus.CREATED).json(message);

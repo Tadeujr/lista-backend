@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult } from 'typeorm';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { ShoppingListUpdateDto } from '../../dto/list/shoppingListUpdate.dto';
 import { ShoppingListE } from '../../entities/shoppingList.entity';
 
@@ -34,7 +34,7 @@ export class ShoppingListService {
     
   }
 
-  async deleteList(id:string): Promise<any> {
+  async deleteList(id:string): Promise<DeleteResult> {
       
       await this.listRepository.query(`delete from Product where "listId" ='${id}'`)
       return await this.listRepository.delete(id);
