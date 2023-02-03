@@ -6,7 +6,6 @@ import { UserE } from 'src/entities/user.entity';
 import { FindOneOptions, Repository, DeleteResult } from 'typeorm';
 import { UserDto } from '../../dto/user/user.dto';
 
-
 @Injectable()
 export class UserService {
   constructor(
@@ -16,7 +15,7 @@ export class UserService {
 
   async listUsers(): Promise<UserE[]> {
     return await this.userRepository.find({
-      select: ['id', 'email','person'],
+      select: ['id', 'email', 'person'],
     });
   }
 
@@ -30,7 +29,6 @@ export class UserService {
 
   async createUser(data: UserDto): Promise<UserE> {
     try {
-
       const user = await this.userRepository.create(data);
       return await this.userRepository.save(user);
     } catch (error) {
@@ -38,12 +36,12 @@ export class UserService {
     }
   }
 
-  async updateUser(id:string, data:UserUpdateDto ):Promise<UserE> {
+  async updateUser(id: string, data: UserUpdateDto): Promise<UserE> {
     try {
       const user = await this.userRepository.findOneOrFail({ where: { id } });
-      data.password = hashSync(data.password, 10)
+      data.password = hashSync(data.password, 10);
       const updateuser = await this.userRepository.merge(user, data);
-      
+
       return await this.userRepository.save(updateuser);
     } catch (error) {
       throw new NotFoundException('Usuario não encontrado, verifique o id.');
@@ -60,5 +58,3 @@ export class UserService {
     }
   }
 }
-
-

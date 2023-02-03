@@ -9,10 +9,16 @@ import {
   Put,
   Req,
   Res,
-  UseGuards
+  UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ProductDto } from 'src/dto/product/product.dto';
 import { ProductE } from 'src/entities/product.entity';
 import { ProductService } from '../../services/product/product.service';
@@ -23,9 +29,9 @@ import { ProductService } from '../../services/product/product.service';
 @UseGuards(AuthGuard('jwt'))
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
-  
+
   @Get()
-  @ApiOperation({summary:"listar todos os produtos de determinada lista"})
+  @ApiOperation({ summary: 'listar todos os produtos de determinada lista' })
   listProducts(@Req() req, @Res() res) {
     this.productService
       .listProducts()
@@ -37,12 +43,11 @@ export class ProductController {
       });
   }
 
-  
   @ApiOkResponse()
   @ApiBody({
     isArray: true,
     type: ProductDto,
-    })
+  })
   @Post()
   createProduct(@Body() body: ProductE[], @Req() req, @Res() res) {
     this.productService
@@ -57,7 +62,6 @@ export class ProductController {
       });
   }
 
-  
   @Put(':id')
   updateProduct(
     @Param('id') id: number,
@@ -77,7 +81,6 @@ export class ProductController {
       });
   }
 
-  
   @Delete(':id')
   deleteProduct(@Param('id') id: number, @Req() req, @Res() res) {
     this.productService

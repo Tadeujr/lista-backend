@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
 import { RegexHelper } from 'src/util/regex';
 
 export class AccountDto {
-  @ApiProperty()//{example:"Tadeu da penha moraes junior"}
+  @ApiProperty() //{example:"Tadeu da penha moraes junior"}
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -23,7 +23,6 @@ export class AccountDto {
   @IsNotEmpty()
   zipcode: string;
 
-
   @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
@@ -37,5 +36,4 @@ export class AccountDto {
   })
   @IsNotEmpty()
   password: string;
-
 }

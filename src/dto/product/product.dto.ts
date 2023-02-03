@@ -3,8 +3,8 @@ import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ProductE } from 'src/entities/product.entity';
 
 export class ProductDto {
-  id?:number;
-  
+  id?: number;
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
@@ -40,6 +40,6 @@ export class ProductDto {
   wasAcquired: boolean;
 
   @IsNumber()
-  @ApiProperty({type:Number})
+  @ApiProperty({ type: Number })
   list: ProductE;
 }

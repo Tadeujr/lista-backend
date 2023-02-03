@@ -1,11 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-
-
 export class ShoppingListDto {
-
-
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
@@ -19,6 +15,4 @@ export class ShoppingListDto {
   @ApiProperty()
   @IsString()
   user: string;
-
-
 }

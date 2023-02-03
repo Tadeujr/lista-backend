@@ -13,11 +13,12 @@ import { UsersModule } from '../users/users.module';
     ConfigModule.forRoot(),
     UsersModule,
     PassportModule,
-    JwtModule.register({privateKey:process.env.JWT_SECRET_KEY,
-    signOptions:{expiresIn:"2 days"}
-})
-],
-    controllers: [AuthController],
-  providers: [AuthService,LocalStrategy,JwtStrategy],
+    JwtModule.register({
+      privateKey: process.env.JWT_SECRET_KEY,
+      signOptions: { expiresIn: '2 days' },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}

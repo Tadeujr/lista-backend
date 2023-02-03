@@ -6,12 +6,12 @@ import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        private readonly userService: UserService,
-        private readonly jwtService: JwtService,
-      ) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService,
+  ) {}
 
-  async login(user):Promise<Object> {
+  async login(user): Promise<object> {
     const payload = { sub: user.id, email: user.email };
 
     return {
@@ -19,10 +19,10 @@ export class AuthService {
     };
   }
 
-  async validateUser(email: string, password: string):Promise<UserE> {
+  async validateUser(email: string, password: string): Promise<UserE> {
     let user: UserE;
     try {
-      user = await this.userService.findOneOrFail({where:{ email }});
+      user = await this.userService.findOneOrFail({ where: { email } });
     } catch (error) {
       return null;
     }

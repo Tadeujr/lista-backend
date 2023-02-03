@@ -6,8 +6,7 @@ export class UserDto {
   @IsEmail()
   @IsNotEmpty()
   @Matches(RegexHelper.email, {
-    message:
-      'Insira um email válido.',
+    message: 'Insira um email válido.',
   })
   @ApiProperty()
   email: string;

@@ -7,8 +7,13 @@ import { ProductModule } from './module/product/product.module';
 import { ShoppingListModule } from './module/shopping-list/shopping-list.module';
 import { UsersModule } from './module/users/users.module';
 
-
-const modules = [PersonModule, UsersModule,ProductModule, ShoppingListModule,AuthModule];
+const modules = [
+  PersonModule,
+  UsersModule,
+  ProductModule,
+  ShoppingListModule,
+  AuthModule,
+];
 
 @Module({
   imports: [

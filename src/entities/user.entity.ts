@@ -1,7 +1,15 @@
 import { hashSync } from 'bcrypt';
 import {
-  BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn,
-  OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import PersonE from './person.entity';
 import { ShoppingListE } from './shoppingList.entity';
@@ -13,7 +21,7 @@ export class UserE {
 
   @Column()
   email: string;
- 
+
   @Column()
   password: string;
 
@@ -25,14 +33,13 @@ export class UserE {
 
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
-  
+
   @OneToOne(() => PersonE, (user) => user)
   @JoinColumn()
   person: PersonE;
 
   @OneToMany(() => ShoppingListE, (list) => list)
   list: ShoppingListE[];
-
 
   @BeforeInsert()
   hashPassword() {

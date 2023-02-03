@@ -21,6 +21,4 @@ export default class PersonDto {
   @IsString()
   @IsNotEmpty()
   zipcode: string;
-
-
 }
