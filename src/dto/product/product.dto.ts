@@ -41,5 +41,29 @@ export class ProductDto {
 
   @IsNumber()
   @ApiProperty({ type: Number })
-  list: ProductE;
+  list: ProductE['list'];
+
+  constructor(
+    
+    store?: string,
+    productName?: string,
+    brand?: string,
+    price?: number,
+    buyDate?: string,
+    unity?: number,
+    commercialUnit?: string,
+    wasAcquired?: boolean,
+    list?: any,
+  ) {
+ 
+    this.store=store;
+    this.productName = productName;
+    this.brand = brand;
+    this.price = price;
+    this.buyDate = buyDate;
+    this.unity = unity;
+    this.commercialUnit = commercialUnit;
+    this.wasAcquired = wasAcquired;
+    this.list = list ;
+  }
 }
