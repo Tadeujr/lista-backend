@@ -1,63 +1,69 @@
-import { Get } from '@nestjs/common';
-export class Product {
-    private _store:string;
-    private _productName: string;
-    private _brand:string;
-    private _price: number;
-    private _buyDate: string;
-    private _unity:number;
-    private _wasAcquired:boolean;
-    private _list:number;
-    
-    
-  
-    constructor(store:string,
-      productName:string,
-      brand:string,
-      price:number,
-      buyDate:string,
-      unity:number,
-      wasAcquired:boolean,
-      list:number) {
-        this._store = store;
-        this._productName = productName;
-        this._brand = brand;
-        this._price = price;
-        this._buyDate = buyDate;
-        this._unity = unity;
-        this._wasAcquired = wasAcquired;
-        this._list = list;
-      }
-    
-    get store():string{
-        return this._store;
-      }
-      
-    get productName() : string {
-        return this._productName
-      }
-    
-    get  price():number{
-        return this._price;
-    }
-    
-    get buyDate():string{
-        return this._buyDate;
-    } 
-    
-    get unity():number{
-        return this._unity;
-    } 
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ProductE } from 'src/entities/product.entity';
 
-    get wasAcquired():boolean{
-      return this._wasAcquired;
-    }
+export class ProductDto {
+  id?: number;
 
-    get brand():string{
-      return this._brand
-    }
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  store: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  productName: string;
+
+  @IsString()
+  @ApiProperty()
+  brand: string;
+
+  @ApiProperty()
+  price: number;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  buyDate: string;
+
+  @IsNotEmpty({ message: 'Enter an integer value.' })
+  @ApiProperty()
+  unity: number;
+
+  @ApiProperty()
+  commercialUnit?: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  @ApiProperty()
+  wasAcquired: boolean;
+
+  @IsNumber()
+  @ApiProperty({ type: Number })
+  list: ProductE['list'];
+
+  constructor(
     
-    get list(): Object{
-      return this._list;
-    }
+    store?: string,
+    productName?: string,
+    brand?: string,
+    price?: number,
+    buyDate?: string,
+    unity?: number,
+    commercialUnit?: string,
+    wasAcquired?: boolean,
+    list?: any,
+  ) {
+ 
+    this.store=store;
+    this.productName = productName;
+    this.brand = brand;
+    this.price = price;
+    this.buyDate = buyDate;
+    this.unity = unity;
+    this.commercialUnit = commercialUnit;
+    this.wasAcquired = wasAcquired;
+    this.list = list ;
   }
+}

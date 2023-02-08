@@ -1,43 +1,117 @@
-import { Repository, UpdateResult, } from 'typeorm';
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductE } from 'src/entities/product.entity';
-import { Product } from 'src/dto/product/product.dto';
-
+import { DeleteResult, Repository } from 'typeorm';
+import { ProductDto } from '../../dto/product/product.dto';
+import { ShoppingListService } from '../list/shoppingList.service';
 
 @Injectable()
 export class ProductService {
-
   constructor(
     @InjectRepository(ProductE)
-    private readonly produtoRepository: Repository<ProductE>
-
-  ) { }
+    private readonly produtoRepository: Repository<ProductE>,
+    @Inject(forwardRef(() => ShoppingListService))
+    private readonly shoppingListService: ShoppingListService,
+  ) {}
 
   async listProducts(): Promise<ProductE[]> {
-    
-
     return await this.produtoRepository.query(`select * from Product`);
   }
 
+  async createProduct(newProducts: ProductE[]): Promise<ProductE[]> {
+    const products = await this.produtoRepository.save(newProducts);
 
-  async createProduct(newProduct:Product): Promise<ProductE>{
+    //updating ShoppingList (SUM)
+    await this.updateList(true, products);
 
- 
-    return await this.produtoRepository.save(newProduct);
+    return products;
   }
 
+  async updateProduct(id: number, data: ProductDto): Promise<ProductE> {
+    let valor: number;
 
-  async updateProduct(idProduct: string,product:ProductE): Promise<UpdateResult> {
-    return await this.produtoRepository.update(Number(idProduct),product)
-    
+    const product = await this.produtoRepository.findOneOrFail({
+      where: { id },
+    });
+
+    if (data.price > product.price) {
+      valor = Number(data.price) - Number(product.price);
+
+      await this.updateValorList(true, Number(data.list), valor);
+    } else if (data.price < product.price) {
+      valor = Number(product.price) - Number(data.price);
+
+      await this.updateValorList(false, Number(data.list), valor);
+    }
+
+    const productUp = await this.produtoRepository.merge(product, data);
+
+    return await this.produtoRepository.save(productUp);
   }
 
-  async deleteProduct(idProduct: string): Promise<any> {
-    const id = Number(idProduct)
+  async deleteProduct(id: number): Promise<DeleteResult> {
+    const products = await this.produtoRepository.query(
+      `select * from product where id = ${id}`,
+    );
     const deleteProduct = await this.produtoRepository.delete(id);
-    console.log('Produto deletado')
-    return deleteProduct
+
+    await this.updateList(false, products);
+    return deleteProduct;
   }
 
+  //true for sum or false for decrease
+  private async updateList(
+    operation: boolean,
+    products: ProductE[],
+  ): Promise<any> {
+    let valorList = 0.0;
+    //search in database for update valor total
+    const list = await this.shoppingListService.findList(
+      Number(products[0].list),
+    );
+    valorList = Number(list[0].total);
+
+    //sum valor products
+    const totalProduct = Number(
+      products
+        .reduce((acum: number, item: ProductE) => {
+          return (acum += item.price);
+        }, 0.0)
+        .toFixed(2),
+    );
+
+    //updating the total  in "ShoppingList"
+    if (operation) {
+      await this.shoppingListService.updateValorList(
+        Number(products[0].list),
+        valorList + totalProduct,
+      );
+    } else {
+      await this.shoppingListService.updateValorList(
+        Number(products[0].list),
+        valorList - totalProduct,
+      );
+    }
+  }
+
+  async updateValorList(
+    operation: boolean,
+    listId: number,
+    valor: number,
+  ): Promise<any> {
+    const list = await this.shoppingListService.findList(Number(listId));
+
+    //updating the total  in "ShoppingList"
+    if (operation) {
+      await this.shoppingListService.updateValorList(
+        listId,
+        list[0].total + valor,
+      );
+    } else {
+      await this.shoppingListService.updateValorList(
+        listId,
+        list[0].total - valor,
+      );
+    }
+  }
 }

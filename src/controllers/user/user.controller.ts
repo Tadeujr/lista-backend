@@ -1,38 +1,65 @@
-import { Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  ParseUUIDPipe,
+  Patch,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
 import { UserService } from 'src/services/user/user.service';
 
-@Controller('api/v1/user')
+@ApiTags('User')
+@Controller('user')
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth('access-token')
 export class UserController {
-    constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
+  //Remover Rota
+  @UseGuards(AuthGuard('jwt'))
+  @Get()
+  async indexUsers() {
+    return await this.userService.listUsers();
+  }
 
-    @Get()
-    async index() {
-      return await this.userService.listUsers();
-    }
-  
-    // @Post()
-    // async store(@Body() body: CreateUserDto) {
-    //   return await this.usersService.store(body);
-    // }
-  
-    // @Get(':id')
-    // async show(@Param('id', new ParseUUIDPipe()) id: string) {
-    //   return await this.usersService.findOneOrFail({ id });
-    // }
-  
-    // @Put(':id')
-    // async update(
-    //   @Param('id', new ParseUUIDPipe()) id: string,
-    //   @Body() body: UpdateUserDto,
-    // ) {
-    //   return await this.usersService.update(id, body);
-    // }
-  
-    // @Delete(':id')
-    // @HttpCode(HttpStatus.NO_CONTENT)
-    // async destroy(@Param('id', new ParseUUIDPipe()) id: string) {
-    //   await this.usersService.destroy(id);
-    // }
+  // @Post()
+  // async storeUser(@Body() body: UserDto) {
+  //   return await this.userService.createUser(body);
+  // }
+
+  @Get(':id')
+  async showUser(@Param('id', new ParseUUIDPipe()) id: string, @Res() res) {
+    return await this.userService
+      .findOneOrFail({ where: { id } })
+      .then((message) => {
+        res.status(HttpStatus.CREATED).json(message);
+      })
+      .catch(() => {
+        res.status(HttpStatus.FORBIDDEN).json({
+          message: 'Erro ao cria lista Verifique os campos do objeto criado',
+        });
+      });
+    //return await this.userService.findOneOrFail({ where: { id } });
+  }
+
+  @Patch(':id')
+  async updateUser(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @Body() body: UserUpdateDto,
+  ) {
+    return await this.userService.updateUser(id, body);
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async destroyUser(@Param('id', new ParseUUIDPipe()) id: string) {
+    return await this.userService.deleteUser(id);
+  }
 }
-// criar o usuario primeiro e depois add o Person
-//depois dou upadate nas infor de FK de Person em user

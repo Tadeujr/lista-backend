@@ -1,37 +1,23 @@
-import {IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserE } from './user.entity';
 
+@Entity({ name: 'person' })
+export default class PersonE {
+  @PrimaryGeneratedColumn('uuid')
+  id: number;
 
-@Entity({name:"person"})
-export default class PersonE{
-    @PrimaryGeneratedColumn()
-    id: number;    
+  @Column()
+  name: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @Column()
-    name:string;
+  @Column()
+  city: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @Column()
-    city:string;
+  @Column()
+  uf: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @Column()
-    uf:string;
+  @Column()
+  zipcode: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @Column()
-    zipcode:string
-
-
-    @OneToOne(()=>UserE, user => user)
-    @JoinColumn()
-    userFk:UserE;
-
+  @OneToOne(() => UserE, (person) => person)
+  userFk: UserE;
 }
-
