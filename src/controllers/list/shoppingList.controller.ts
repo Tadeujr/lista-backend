@@ -13,9 +13,9 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiTags } from '@nestjs/swagger';
-import { ShoppingListDto } from 'src/dto/list/shoppingList.dto';
-import { ShoppingListUpdateDto } from 'src/dto/list/shoppingListUpdate.dto';
 import { ShoppingListService } from '../../services/list/shoppingList.service';
+import { ShoppingListDto } from '../../dto/list/shoppingList.dto';
+import { ShoppingListUpdateDto } from '../../dto/list/shoppingListUpdate.dto';
 
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { ProductE } from 'src/entities/product.entity';
+import { ProductE } from '../../entities/product.entity';
+
 
 export class ProductDto {
   id?: number;

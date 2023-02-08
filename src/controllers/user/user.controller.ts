@@ -13,8 +13,9 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
-import { UserService } from 'src/services/user/user.service';
+import { UserService } from '../../services/user/user.service';
+import { UserUpdateDto } from '../../dto/user/userUpdate.dto';
+
 
 @ApiTags('User')
 @Controller('user')
