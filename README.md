@@ -2,9 +2,24 @@
 
 Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS.
 
-
-# Heroku <br>
+# Documentação Local da Api( Heroku) <br>
 https://lista-backend.herokuapp.com/api#
+
+
+
+## Usuário para teste <br>
+* Faça login na rota https://lista-backend.herokuapp.com/api#/Auth/AuthController_login utilizando o objeto abaixo:<br>
+```
+{
+    "email": "tadeu_junior@outlook.com",
+    "password": "Tadeu@123."
+}
+
+```
+* Insira o token em authorize sem as "aspas";
+* Se prefirir crie um novo usuário.<br>
+
+### A base possui uma lista com mais 60 produtos cadastrados na lista de id 1.
 
 
 ## Instalação
@@ -37,8 +52,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-# Documentação da Api
-http://localhost:3001/api#/
 
 # Populando a base
 ## Com o Json
