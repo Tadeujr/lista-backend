@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { ProductE } from 'src/entities/product.entity';
+import { ProductE } from '../../entities/product.entity';
 
 export class ProductDto {
   id?: number;
@@ -44,7 +44,6 @@ export class ProductDto {
   list: ProductE['list'];
 
   constructor(
-    
     store?: string,
     productName?: string,
     brand?: string,
@@ -55,8 +54,7 @@ export class ProductDto {
     wasAcquired?: boolean,
     list?: any,
   ) {
- 
-    this.store=store;
+    this.store = store;
     this.productName = productName;
     this.brand = brand;
     this.price = price;
@@ -64,6 +62,6 @@ export class ProductDto {
     this.unity = unity;
     this.commercialUnit = commercialUnit;
     this.wasAcquired = wasAcquired;
-    this.list = list ;
+    this.list = list;
   }
 }

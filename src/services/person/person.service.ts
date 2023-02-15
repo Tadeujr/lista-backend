@@ -1,12 +1,13 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AccountDto } from 'src/dto/account/account.dto';
-import PersonDto from 'src/dto/person/person.dto';
-import PersonE from 'src/entities/person.entity';
-import { UserE } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserDto } from '../../dto/user/user.dto';
 import { UserService } from '../user/user.service';
+
+import { AccountDto } from '../../dto/account/account.dto';
+import { UserE } from '../../entities/user.entity';
+import PersonDto from '../../dto/person/person.dto';
+import PersonE from '../../entities/person.entity';
 
 @Injectable()
 export class PersonService {

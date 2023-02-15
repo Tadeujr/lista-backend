@@ -12,9 +12,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
-import { UserService } from 'src/services/user/user.service';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UserService } from '../../services/user/user.service';
+import { UserUpdateDto } from '../../dto/user/userUpdate.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -22,19 +22,9 @@ import { UserService } from 'src/services/user/user.service';
 @ApiBearerAuth('access-token')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-  //Remover Rota
-  @UseGuards(AuthGuard('jwt'))
-  @Get()
-  async indexUsers() {
-    return await this.userService.listUsers();
-  }
-
-  // @Post()
-  // async storeUser(@Body() body: UserDto) {
-  //   return await this.userService.createUser(body);
-  // }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Busca usuário por id.' })
   async showUser(@Param('id', new ParseUUIDPipe()) id: string, @Res() res) {
     return await this.userService
       .findOneOrFail({ where: { id } })
@@ -43,13 +33,14 @@ export class UserController {
       })
       .catch(() => {
         res.status(HttpStatus.FORBIDDEN).json({
-          message: 'Erro ao cria lista Verifique os campos do objeto criado',
+          message: 'Erro ao cria lista Verifique os campos do objeto criado.',
         });
       });
     //return await this.userService.findOneOrFail({ where: { id } });
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Alterar senha do login.' })
   async updateUser(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() body: UserUpdateDto,
@@ -58,6 +49,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Deletar usuário.' })
   @HttpCode(HttpStatus.NO_CONTENT)
   async destroyUser(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.userService.deleteUser(id);

@@ -1,9 +1,9 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ProductE } from 'src/entities/product.entity';
 import { DeleteResult, Repository } from 'typeorm';
 import { ProductDto } from '../../dto/product/product.dto';
-import { ShoppingListService } from '../list/shoppingList.service';
+import { ShoppingListService } from '../shoppingList/shoppingList.service';
+import { ProductE } from '../../entities/product.entity';
 
 @Injectable()
 export class ProductService {

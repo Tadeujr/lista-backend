@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashSync } from 'bcrypt';
-import { UserUpdateDto } from 'src/dto/user/userUpdate.dto';
-import { UserE } from 'src/entities/user.entity';
 import { FindOneOptions, Repository, DeleteResult } from 'typeorm';
 import { UserDto } from '../../dto/user/user.dto';
+import { UserE } from '../../entities/user.entity';
+import { UserUpdateDto } from '../../dto/user/userUpdate.dto';
 
 @Injectable()
 export class UserService {
@@ -15,7 +15,7 @@ export class UserService {
 
   async listUsers(): Promise<UserE[]> {
     return await this.userRepository.find({
-      select: ['id', 'email', 'person'],
+      select: ['id', 'email', 'password','person'],
     });
   }
 

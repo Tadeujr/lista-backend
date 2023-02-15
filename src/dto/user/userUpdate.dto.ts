@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Matches } from 'class-validator';
-import { RegexHelper } from 'src/util/regex';
+import { RegexHelper } from '../../util/regex';
 
 export class UserUpdateDto {
   @ApiProperty()
