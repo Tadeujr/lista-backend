@@ -2,6 +2,11 @@
 
 Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS.
 
+
+#Heroku
+https://lista-backend.herokuapp.com/api#
+
+
 ## Instalação
 
 ```bash
