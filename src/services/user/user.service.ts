@@ -15,7 +15,7 @@ export class UserService {
 
   async listUsers(): Promise<UserE[]> {
     return await this.userRepository.find({
-      select: ['id', 'email', 'person'],
+      select: ['id', 'email', 'password','person'],
     });
   }
 

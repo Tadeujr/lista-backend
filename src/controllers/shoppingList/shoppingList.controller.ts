@@ -12,10 +12,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags } from '@nestjs/swagger';
-import { ShoppingListService } from '../../services/list/shoppingList.service';
-import { ShoppingListDto } from '../../dto/list/shoppingList.dto';
-import { ShoppingListUpdateDto } from '../../dto/list/shoppingListUpdate.dto';
+import { ApiTags,ApiOperation } from '@nestjs/swagger';
+import { ShoppingListService } from '../../services/shoppingList/shoppingList.service';
+import { ShoppingListDto } from '../../dto/shoppingList/shoppingList.dto';
+import { ShoppingListUpdateDto } from '../../dto/shoppingList/shoppingListUpdate.dto';
+import { ShoppingListfindDto } from 'src/dto/shoppingList/shoppingListFind.dto';
 
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')
@@ -24,6 +25,7 @@ export class shoppinglistController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('newlist')
+  @ApiOperation({ summary: 'Cria uma nova lista.' })
   async createList(@Body() data: ShoppingListDto, @Req() req, @Res() res) {
     await this.listService
       .createList(data)
@@ -38,6 +40,7 @@ export class shoppinglistController {
   }
 
   @Get('allList')
+  @ApiOperation({ summary: 'Exibe todas as lista cadastradas.' })
   allList(@Req() req, @Res() res) {
     this.listService
       .allList()
@@ -52,8 +55,9 @@ export class shoppinglistController {
       });
   }
 
-  @Get('find')
-  seacherList(@Body() list, @Req() req, @Res() res) {
+  @Post('find')
+  @ApiOperation({ summary: 'Busca lista a partir da data e usuário.' })
+  seacherList(@Body() list:ShoppingListfindDto, @Req() req, @Res() res) {
     this.listService
       .seacherList(list)
       .then((message) => {
@@ -68,6 +72,7 @@ export class shoppinglistController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Busca lista a partir a partir do id.' })
   allListUser(@Param('id') id: string, @Req() req, @Res() res) {
     this.listService
       .allListForUser(id)
@@ -81,6 +86,7 @@ export class shoppinglistController {
 
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
+  @ApiOperation({ summary: 'Alterar lista.' })
   alterList(
     @Param('id') id: string,
     @Body() list: ShoppingListUpdateDto,
@@ -99,6 +105,7 @@ export class shoppinglistController {
 
   @UseGuards(AuthGuard('jwt'))
   @Delete(':id')
+  @ApiOperation({ summary: 'Deletar lista a partir de id.' })
   deleteList(@Param('id') id: string, @Req() req, @Res() res): void {
     this.listService
       .deleteList(id)

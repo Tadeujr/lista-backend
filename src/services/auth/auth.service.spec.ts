@@ -1,26 +1,24 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
 import { UserController } from '../../controllers/user/user.controller';
 
-
 const newUser = {
-  id:"591ecf04-d638-4acc-b43a-d149470819a3",
-  email: "tadeu_junior@outlook.com",
-  password: "Tadeu@123.",
-  person:"591ecf04-d638-4acc-b43a-d149470819a3"
+  id: '591ecf04-d638-4acc-b43a-d149470819a3',
+  email: 'tadeu_junior@outlook.com',
+  password: 'Tadeu@123.',
+  person: '591ecf04-d638-4acc-b43a-d149470819a3',
 };
 
-const newUserList = [{
-  id:"591ecf04-d638-4acc-b43a-d149470819a3",
-  email: "tadeu_junior@outlook.com",
-  password: "Tadeu@123.",
-  person:"591ecf04-d638-4acc-b43a-d149470819a3"
-}];
+const newUserList = [
+  {
+    id: '591ecf04-d638-4acc-b43a-d149470819a3',
+    email: 'tadeu_junior@outlook.com',
+    password: 'Tadeu@123.',
+    person: '591ecf04-d638-4acc-b43a-d149470819a3',
+  },
+];
 
 describe('AuthService', () => {
-
-  
   let userController: UserController;
   let userService: UserService;
 
@@ -33,9 +31,8 @@ describe('AuthService', () => {
           useValue: {
             listUsers: jest.fn().mockResolvedValue(newUser),
             findOneOrFail: jest.fn().mockResolvedValue(newUser),
-            save:jest.fn().mockResolvedValue(newUser),
-            delete: jest.fn().mockResolvedValue(newUser.id)
-            
+            save: jest.fn().mockResolvedValue(newUser),
+            delete: jest.fn().mockResolvedValue(newUser.id),
           },
         },
       ],
@@ -50,19 +47,15 @@ describe('AuthService', () => {
     expect(userController).toBeDefined();
   });
 
-
-
   describe('List Users', () => {
     it('should return a user entity list successfully', async () => {
       const result = await userService.listUsers();
 
       // Assert
-          // Assert
-    expect(result).toEqual(newUserList[0]);
-    expect(typeof result).toEqual('object');
-    expect(userService.listUsers).toHaveBeenCalledTimes(1);
+      // Assert
+      expect(result).toEqual(newUserList[0]);
+      expect(typeof result).toEqual('object');
+      expect(userService.listUsers).toHaveBeenCalledTimes(1);
     });
+  });
 });
-});
-
-

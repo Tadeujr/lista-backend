@@ -25,13 +25,13 @@ import { ProductE } from '../../entities/product.entity';
 
 @ApiTags('Product')
 @Controller('product')
-@ApiBearerAuth('access-token') //edit here
+@ApiBearerAuth('access-token')
 @UseGuards(AuthGuard('jwt'))
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Get()
-  @ApiOperation({ summary: 'listar todos os produtos de determinada lista' })
+  @ApiOperation({ summary: 'Lista todos os produtos.' })
   listProducts(@Req() req, @Res() res) {
     this.productService
       .listProducts()
@@ -39,7 +39,7 @@ export class ProductController {
         res.status(HttpStatus.OK).json(message);
       })
       .catch(() => {
-        res.status(HttpStatus.FORBIDDEN).json({ message: 'Produtos' });
+        res.status(HttpStatus.FORBIDDEN).json({ message: 'Produtos não encontrados' });
       });
   }
 
@@ -49,6 +49,7 @@ export class ProductController {
     type: ProductDto,
   })
   @Post()
+  @ApiOperation({ summary: 'Criar um novo produto.' })
   createProduct(@Body() body: ProductE[], @Req() req, @Res() res) {
     this.productService
       .createProduct(body)
@@ -63,6 +64,7 @@ export class ProductController {
   }
 
   @Put(':id')
+  @ApiOperation({ summary: 'Atualiza dados do produto.' })
   updateProduct(
     @Param('id') id: number,
     @Body() body: ProductDto,
@@ -77,11 +79,12 @@ export class ProductController {
       .catch(() => {
         res
           .status(HttpStatus.FORBIDDEN)
-          .json({ message: 'Erro ao atualizar o(s) produtro(s)' });
+          .json({ message: 'Erro ao atualizar o(s) produto(s).' });
       });
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Deleta dados do produto.' })
   deleteProduct(@Param('id') id: number, @Req() req, @Res() res) {
     this.productService
       .deleteProduct(id)
@@ -91,7 +94,7 @@ export class ProductController {
       .catch(() => {
         res
           .status(HttpStatus.FORBIDDEN)
-          .json({ message: 'Erro ao atualizar usuarios' });
+          .json({ message: 'Erro ao deletar Produto' });
       });
   }
 }
