@@ -2,7 +2,7 @@
 
 Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS.
 
-# Documentação Local da Api( Heroku) <br>
+# Documentação da Api( Heroku) <br>
 https://lista-backend.herokuapp.com/api#
 
 
