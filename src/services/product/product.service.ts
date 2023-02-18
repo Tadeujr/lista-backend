@@ -15,7 +15,8 @@ export class ProductService {
   ) {}
 
   async listProducts(): Promise<ProductE[]> {
-    return await this.produtoRepository.query(`select * from Product`);
+    return await this.produtoRepository.query(`select * from  public.product
+    order by category`);
   }
 
   async createProduct(newProducts: ProductE[]): Promise<ProductE[]> {
