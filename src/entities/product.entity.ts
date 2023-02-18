@@ -16,6 +16,9 @@ export class ProductE {
   store: string;
 
   @Column()
+  category: string
+
+  @Column()
   productName: string;
 
   @Column()

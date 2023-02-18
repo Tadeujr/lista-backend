@@ -11,6 +11,10 @@ export class ProductDto {
   store: string;
 
   @IsString()
+  @ApiProperty()
+  category: string
+
+  @IsString()
   @IsNotEmpty()
   @ApiProperty()
   productName: string;
