@@ -1,8 +1,8 @@
 # Descrição
 
-Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS.
+Projeto pessoal de criação de uma lista de compras que irá auxiliar na minhas compra mensais e gerar alguns relatório, esse repositório é responsavel pela API backend da aplicação que utiliza NestJS, a API encontra-se hospedada no heroku.
 
-# Documentação da Api( Heroku) <br>
+# Documentação da Api (Heroku) <br>
 https://lista-backend.herokuapp.com/api#
 
 
@@ -21,8 +21,17 @@ https://lista-backend.herokuapp.com/api#
 
 ### A base possui uma lista com mais 60 produtos cadastrados na lista de id 1.
 
+## Json com a lista de produtos <br>
 
-## Instalação
+Se for necessário deixei disponivél a lista de uma compra que fiz, você pode criar uma lista nova e registrar esses produtos se quise no seguinte link: https://github.com/Tadeujr/lista-backend/blob/master/listaTeste.json
+
+<b>OBS:</b> Lembre-se de altera o campo list com o id para sua nova lista criada
+
+# Rodando a aplicação localmente
+## Instalação das bibliotecas 
+
+* instale o Node: https://nodejs.org/en/ ;
+* Após baixar o repositório execute no terminal o seguinte comando:
 
 ```bash
 $ npm install
@@ -62,5 +71,5 @@ Após criar o usuário:
  Não esqueça de alterar o id da lista no json, com o id da lista criado na rota shoppingList.
  
 ## Com o sql
-  Vá na database e execute o seed.sql em https://github.com/Tadeujr/lista-backend/blob/development/seed.sql ;<br>
+  Vá na database e execute o seed.sql em https://github.com/Tadeujr/lista-backend/blob/master/seed.sql ;<br>
   Não esqueça de alterar o id da lista no sql, com o id da lista criado na rota shoppingList.
