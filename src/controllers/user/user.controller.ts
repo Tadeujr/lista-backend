@@ -23,17 +23,17 @@ import { UserUpdateDto } from '../../dto/user/userUpdate.dto';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Busca usuário por id.' })
-  async showUser(@Param('id', new ParseUUIDPipe()) id: string, @Res() res) {
+  @Get(':email')
+  @ApiOperation({ summary: 'Busca usuário por email.' })
+  async showUser(@Param('email') email: string, @Res() res) {
     return await this.userService
-      .findOneOrFail({ where: { id } })
+      .findOneOrFail({ where: { email } })
       .then((message) => {
         res.status(HttpStatus.CREATED).json(message);
       })
       .catch(() => {
         res.status(HttpStatus.FORBIDDEN).json({
-          message: 'Erro ao cria lista Verifique os campos do objeto criado.',
+          message: 'Erro ao buscar usuário',
         });
       });
     //return await this.userService.findOneOrFail({ where: { id } });
@@ -51,7 +51,7 @@ export class UserController {
   @Delete(':id')
   @ApiOperation({ summary: 'Deletar usuário.' })
   @HttpCode(HttpStatus.NO_CONTENT)
-  async destroyUser(@Param('id', new ParseUUIDPipe()) id: string) {
+  async destroyUser(@Param('id') id: string) {
     return await this.userService.deleteUser(id);
   }
 }
