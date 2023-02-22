@@ -1,137 +1,53 @@
-Insert into Product (store, "productName", brand, price, "buyDate", unity, "commercialUnit", "wasAcquired", "listId")
+INSERT INTO public.product ("productName",category, brand,unity,"commercialUnit",price,store,"buyDate","wasAcquired",list)
 Values
- ('Atacado Vem', 'BATATA DOCE kg', 'N/A',11.39,'25/01/2022',2.855,'KG',true,7),
-
- ('Atacado Vem', 'CEBOLA kg', 'N/A',9.96,'25/01/2022',1.535,'KG',true,7),
-
- ('Atacado Vem', 'CEBOLINHA VERDE UND', 'N/A',4.98,'25/01/2022',2,'UN',true,7),
-
- ('Atacado Vem', 'SALSA UND', 'N/A',4.98,'25/01/2022',2,'UN',true,7),
-
- ('Atacado Vem', 'S.LIXO 50L/30 63X80 GREENLIXO PTO', 'GREENLIXO',11.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'DETERGENTE LIMPOL 500ML CRISTAL', 'LIMPOL',13.45,'25/01/2022',5,'UN',true,7),
-
- ('Atacado Vem', 'LIMPAD CREM CIF 450ML 20 DESC ORIGINAL', 'CIF',9.98,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'LIMPAD AJAX NATURAL ESSENTIALS 1L EUCALIP/CITRUS', 'AJAX',8.59,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'LIMPAD M-USO VEJA POW FUS SQZ 500ML LARANJA', 'VEJA',5.49,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'AGUA SANITARIA QBOA 1L', 'QBOA',7.98,'25/01/2022',2,'UN',true,7),
-
- ('Atacado Vem', 'CREME DENT COLG T12 2X220G LMPM CLEAN MINT', 'COLGATE',19.98,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'APARELHO PRESTOBARBA3 MASC L4P3 SENSE CARE', 'PRESTOBARBA',26.9,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'DESOD AERO REXONA CLINIC MEN 150ML CLEAR', 'REXONA',19.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'GEL ADESIVO PATO REFIL 38G 6 DISCOS MARINE', 'PATO',15.59,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'ESPONJA M-USO BOMBRIL L4P3UND', 'BOMBRIL',5.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'PANO ROLO MULTI-USO CONDOR UND', 'CONDOR',26.9,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'SABONETE LIQ FIORUCCI REFIL 440ML FLOR DE CEREJ', 'FIORUCC',10.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'PAO DO FORNO WICKBOLD INTEGRAL 500G', 'WICKBOLD',12.89,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'BISC CR CRACKER PIRAQUE 200G', 'PIRAQUE',4.69,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'BISC AGUA GERG PIRAQUE 240G', 'PIRAQUE',4.49,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'MASSA STA AMALIA ZERO GLUTEN 500G PENNE', 'STA AMALIA',7.79,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'MILHO PIPOCA JUPARANA 500G', 'JUPARANA',5.19,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'FEIJAO CARIOCA COMBRASIL 1kg', 'COMBRASIL',11.98,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'ACUCAR CRISTAL ALCON 2kg', 'ALCON',7.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'ARROZ SEPE BIANCO T1 5kg', 'SEPE',19.7,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'TAPIOCA GOMA ROCHA 500G', 'ROCHA',17.97,'25/01/2022',3,'UN',true,7),
-
- ('Atacado Vem', 'MASSA TORTILHA RAP 10 LIGHT 330G', 'RAP 10',10.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'FILTRO PAPEL 102 3 CORACOES 30UND', '3 CORACOES',5.98,'25/01/2022',2,'UN',true,7),
-
- ('Atacado Vem', 'MILHO VERDE FUGINI SACHE 170G', 'FUGINI',17.45,'25/01/2022',5,'UN',true,7),
-
- ('Atacado Vem', 'QUEIJO RALADO RELIQ CANASTRA 50G', 'RELIQ CANASTRA',8.79,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'CREME LEITE BENDITO TP 200G', 'BENDITO',11.16,'25/01/2022',4,'UN',true,7),
-
- ('Atacado Vem', 'COCO FLOCOS COCO CIA INTEGRAL 100G', 'COCO CIA',10.78,'25/01/2022',2,'UN',true,7),
-
- ('Atacado Vem', 'MILHO PIPOCA JUPARANA 500G', 'JUPARANA',5.19,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'CREME LEITE BENDITO TP 200G', 'BENDITO',2.79,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'SABAO BARRA COCO URCA 180G', 'URCA',3.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'LEITE LV PORTO ALEGRE DESNATADO 1L', 'ALEGRE',30.03,'25/01/2022',7,'UN',true,7),
-
- ('Atacado Vem', 'FILE PEITO CONG UNIAVES BDJ 1kg', 'UNIAVES',104.5,'25/01/2022',5,'UN',true,7),
-
- ('Atacado Vem', 'LA ACO BOMBRIL 60G C/8', 'BOMBRIL',3.19,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'CHA DE DENTRO BOVINO kg', 'N/A',117.09,'25/01/2022',3.01,'KG',true,7),
-
- ('Atacado Vem', 'MUSCULO BOVINO 1 kg', 'N/A',48.68,'25/01/2022',1.628,'KG',true,7),
-
- ('Atacado Vem', 'ACEM BOVINO kg', 'N/A',28.78,'25/01/2022',1.156,'KG',true,7),
-
- ('Atacado Vem', 'MAIONESE HELLMANNS LIGHT POTE 500G', 'ELLMANNS',11.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'REQUEIJAO CR VENEZA LIGHT POTE 200G', 'VENEZA',7.39,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'QUEIJO RALADO RELIQ CANASTRA 50G', 'RELIQ',8.79,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'OVOS BRANCOS PEQUENO 30UND', 'KerOvos',13.98,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'AGUA C/GAS CRYSTAL', 'CRYSTAL',4.68,'25/01/2022',2,'UN',true,7),
-
- ('Atacado Vem', 'FARINHA MAND TORR LESTE 500G', 'LESTE',4.69,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'REFRIG COCA COLA ZERO 600ML', 'COCA COLA',4.99,'25/01/2022',1,'UN',true,7),
-
- ('Atacado Vem', 'QUEIJO MINAS PAD VENEZA kg', 'VENEZA',34.44,'25/01/2022',0.466,'KG',true,7),
-
- ('Supermercado Sempre Tem', 'ERVILHA CONG SADIA 1.05KG VEG TAL', 'SADIA',24.59,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'PERNIL SUINO SOS.TEMP.VACUO CORELLA KG', 'CORELLA',16.89,'25/01/2022',0.676,'KG',true,7),
-
- ('Supermercado Sempre Tem', 'PERNIL SUINO SOS.TEMP.VACUO CORELLA KG', 'CORELLA',16.24,'25/01/2022',0.65,'KG',true,7),
-
- ('Supermercado Sempre Tem', 'PERNIL SUINO SOS.TEMP.VACUO CORELLA KG', 'CORELLA',18.14,'25/01/2022',0.726,'KG',true,7),
-
- ('Supermercado Sempre Tem', 'AVEIA YOKI FLOCOS REG 500GR', 'YOKI',23.98,'25/01/2022',2,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'REFC.CLIGHT LARANJA 8G', 'CLIGHT',5.96,'25/01/2022',4,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'ATUM 88 RAL.OLEO 140G', '88',26.95,'25/01/2022',5,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'MOSTARDA QUERO FP 190GR', 'QUERO',5.89,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'KETCHUP HEMMER ZERO 310G', 'HEMMER',7.69,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'REFR.SPRITE 2LT SACUCAR', 'SPRITE',12.98,'25/01/2022',2,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'GELEIA HOMEMADE ZERO GOIABA 250G', 'HOMEMADE',25.79,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'LAVA ROUPAS LIQ.OMO CONC.REF.500ML', 'OMO',29.79,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'AMAC.CONC.COMFORT DOYP P.CUIDADO 900ML', 'COMFORT',18.59,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'TOMATE KG', 'N/A',16.23,'25/01/2022',1.625,'KG',true,7),
-
- ('Supermercado Sempre Tem', 'SAB.LUX LIRIO AZUL 85G', 'LUX',5.38,'25/01/2022',2,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'SAB.LUX FLOR DE LOTUS 85G', 'LUX',5.38,'25/01/2022',2,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'SAB.LUX ORQUIDEA NEGRA 85G', 'LUX',10.76,'25/01/2022',4,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'ALECRIM UND', 'N/A',2.49,'25/01/2022',1,'UN',true,7),
-
- ('Supermercado Sempre Tem', 'FLOR DE VIOLETA VIOLP11070', 'N/A',3.99,'25/01/2022',1,'UN',true,7)
+ ('S.LIXO 50L/30 63X80 GREENLIXO PTO', 'Limpeza', 'GREENLIXO',1,'UN',11.99,'Atacado Vem','25/01/2022',true,1),
+ ('DETERGENTE LIMPOL 500ML CRISTAL', 'Limpeza', 'LIMPOL',5,'UN',13.45,'Atacado Vem','25/01/2022',true,1),
+ ('LIMPAD CREM CIF 450ML 20 DESC ORIGINAL', 'Limpeza', 'CIF',1,'UN',9.98,'Atacado Vem','25/01/2022',true,1),
+ ('LIMPAD AJAX NATURAL ESSENTIALS 1L EUCALIP/CITRUS', 'Limpeza', 'AJAX',1,'UN',8.59,'Atacado Vem','25/01/2022',true,1),
+ ('LIMPAD M-USO VEJA POW FUS SQZ 500ML LARANJA', 'Limpeza', 'VEJA',1,'UN',5.49,'Atacado Vem','25/01/2022',true,1),
+ ('AGUA SANITARIA QBOA 1L', 'Limpeza', 'QBOA',2,'UN',7.98,'Atacado Vem','25/01/2022',true,1),
+ ('CREME DENT COLG T12 2X220G LMPM CLEAN MINT', 'Limpeza', 'COLGATE',1,'UN',19.98,'Atacado Vem','25/01/2022',true,1),
+ ('APARELHO PRESTOBARBA3 MASC L4P3 SENSE CARE', 'Limpeza', 'PRESTOBARBA',1,'UN',26.9,'Atacado Vem','25/01/2022',true,1),
+ ('DESOD AERO REXONA CLINIC MEN 150ML CLEAR', 'Limpeza', 'REXONA',1,'UN',19.99,'Atacado Vem','25/01/2022',true,1),
+ ('GEL ADESIVO PATO REFIL 38G 6 DISCOS MARINE', 'Limpeza', 'PATO',1,'UN',15.59,'Atacado Vem','25/01/2022',true,1),
+ ('ESPONJA M-USO BOMBRIL L4P3UND', 'Limpeza', 'BOMBRIL',1,'UN',5.99,'Atacado Vem','25/01/2022',true,1),
+ ('PANO ROLO MULTI-USO CONDOR UND', 'Limpeza', 'CONDOR',1,'UN',26.9,'Atacado Vem','25/01/2022',true,1),
+ ('SABONETE LIQ FIORUCCI REFIL 440ML FLOR DE CEREJ', 'Limpeza', 'FIORUCC',1,'UN',10.99,'Atacado Vem','25/01/2022',true,1),
+ ('PAO DO FORNO WICKBOLD INTEGRAL 500G', 'Padaria', 'WICKBOLD',1,'UN',12.89,'Atacado Vem','25/01/2022',true,1),
+ ('BISC CR CRACKER PIRAQUE 200G', 'Padaria', 'PIRAQUE',1,'UN',4.69,'Atacado Vem','25/01/2022',true,1),
+ ('BISC AGUA GERG PIRAQUE 240G', 'Padaria', 'PIRAQUE',1,'UN',4.49,'Atacado Vem','25/01/2022',true,1),
+ ('MASSA STA AMALIA ZERO GLUTEN 500G PENNE', 'Cereais e Grãos', 'STA AMALIA',1,'UN',7.79,'Atacado Vem','25/01/2022',true,1),
+ ('MILHO PIPOCA JUPARANA 500G', 'Cereais e Grãos', 'JUPARANA',1,'UN',5.19,'Atacado Vem','25/01/2022',true,1),
+ ('FEIJAO CARIOCA COMBRASIL 1kg', 'Cereais e Grãos', 'COMBRASIL',1,'UN',11.98,'Atacado Vem','25/01/2022',true,1),
+ ('ACUCAR CRISTAL ALCON 2kg', 'Cereais e Grãos', 'ALCON',1,'UN',7.99,'Atacado Vem','25/01/2022',true,1),
+ ('ARROZ SEPE BIANCO T1 5kg', 'Cereais e Grãos', 'SEPE',1,'UN',19.7,'Atacado Vem','25/01/2022',true,1),
+ ('TAPIOCA GOMA ROCHA 500G', 'Cereais e Grãos', 'ROCHA',3,'UN',17.97,'Atacado Vem','25/01/2022',true,1),
+ ('MASSA TORTILHA RAP 10 LIGHT 330G', 'Cereais e Grãos', 'RAP 10',1,'UN',10.99,'Atacado Vem','25/01/2022',true,1),
+ ('FILTRO PAPEL 102 3 CORACOES 30UND', 'Cereais e Grãos', '3 CORACOES',2,'UN',5.98,'Atacado Vem','25/01/2022',true,1),
+ ('MILHO VERDE FUGINI SACHE 170G', 'Cereais e Grãos', 'FUGINI',5,'UN',17.45,'Atacado Vem','25/01/2022',true,1),
+ ('QUEIJO RALADO RELIQ CANASTRA 50G', 'Leite e Derivados', 'RELIQ CANASTRA',1,'UN',8.79,'Atacado Vem','25/01/2022',true,1),
+ ('CREME LEITE BENDITO TP 200G', 'Leite e Derivados', 'BENDITO',4,'UN',11.16,'Atacado Vem','25/01/2022',true,1),
+ ('COCO FLOCOS COCO CIA INTEGRAL 100G', 'Cereais e Grãos', 'COCO CIA',2,'UN',10.78,'Atacado Vem','25/01/2022',true,1),
+ ('MILHO PIPOCA JUPARANA 500G', 'Leite e Derivados', 'JUPARANA',1,'UN',5.19,'Atacado Vem','25/01/2022',true,1),
+ ('CREME LEITE BENDITO TP 200G', 'Leite e Derivados', 'BENDITO',1,'UN',2.79,'Atacado Vem','25/01/2022',true,1),
+ ('SABAO BARRA COCO URCA 180G', 'Limpeza', 'URCA',1,'UN',3.99,'Atacado Vem','25/01/2022',true,1),
+ ('LEITE LV PORTO ALEGRE DESNATADO 1L', 'Leite e Derivados', 'ALEGRE',7,'UN',30.03,'Atacado Vem','25/01/2022',true,1),
+ ('FILE PEITO CONG UNIAVES BDJ 1kg', 'Limpeza', 'UNIAVES',5,'UN',104.5,'Atacado Vem','25/01/2022',true,1),
+ ('MAIONESE HELLMANNS LIGHT POTE 500G', 'Molhos e Enlatados', 'ELLMANNS',1,'UN',11.99,'Atacado Vem','25/01/2022',true,1),
+ ('REQUEIJAO CR VENEZA LIGHT POTE 200G', 'Leite e Derivados', 'VENEZA',1,'UN',7.39,'Atacado Vem','25/01/2022',true,1),
+ ('QUEIJO RALADO RELIQ CANASTRA 50G', 'Leite e Derivados', 'RELIQ',1,'UN',8.79,'Atacado Vem','25/01/2022',true,1),
+ ('FARINHA MAND TORR LESTE 500G', 'Cereais e Grãos', 'LESTE',1,'UN',4.69,'Atacado Vem','25/01/2022',true,1),
+ ('REFRIG COCA COLA ZERO 600ML', 'Bebidas', 'COCA COLA',1,'UN',4.99,'Atacado Vem','25/01/2022',true,1),
+ ('ERVILHA CONG SADIA 1.05KG VEG TAL', 'Cereais e Grãos', 'SADIA',1,'UN',24.59,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('AVEIA YOKI FLOCOS REG 500GR', 'Cereais e Grãos', 'YOKI',2,'UN',23.98,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('REFC.CLIGHT LARANJA 8G', 'Bebidas', 'CLIGHT',4,'UN',5.96,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('ATUM 88 RAL.OLEO 140G', 'Molhos e Enlatados', '88',5,'UN',26.95,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('MOSTARDA QUERO FP 190GR', 'Molhos e Enlatados', 'QUERO',1,'UN',5.89,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('KETCHUP HEMMER ZERO 310G', 'Molhos e Enlatados', 'HEMMER',1,'UN',7.69,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('REFR.SPRITE 2LT SACUCAR', 'Bebidas', 'SPRITE',2,'UN',12.98,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('GELEIA HOMEMADE ZERO GOIABA 250G', 'Padaria', 'HOMEMADE',1,'UN',25.79,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('LAVA ROUPAS LIQ.OMO CONC.REF.500ML', 'Limpeza', 'OMO',1,'UN',29.79,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('AMAC.CONC.COMFORT DOYP P.CUIDADO 900ML', 'Limpeza', 'COMFORT',1,'UN',18.59,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('SAB.LUX LIRIO AZUL 85G', 'Limpeza', 'LUX',2,'UN',5.38,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('SAB.LUX FLOR DE LOTUS 85G', 'Limpeza', 'LUX',2,'UN',5.38,'Supermercado Sempre Tem','25/01/2022',true,1),
+ ('SAB.LUX ORQUIDEA NEGRA 85G', 'Limpeza', 'LUX',4,'UN',10.76,'Supermercado Sempre Tem','25/01/2022',true,1)
