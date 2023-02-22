@@ -1,11 +1,41 @@
 # Descrição
 
-Projeto pessoal de criação de uma lista de compras, esse repositório é responsavel pelo backend da aplicação que utiliza NestJS.
+Projeto pessoal de criação de uma lista de compras que irá auxiliar na minhas compra mensais e gerar alguns relatório, esse repositório é responsavel pela API backend da aplicação que utiliza NestJS, a API encontra-se hospedada no heroku.
 
-## Instalação
+# Documentação da Api (Heroku) <br>
+https://lista-backend.herokuapp.com/api#
+
+
+
+## Usuário para teste <br>
+* Faça login na rota https://lista-backend.herokuapp.com/api#/Auth/AuthController_login utilizando o objeto abaixo:<br>
+```
+{
+    "email": "tadeu_junior@outlook.com",
+    "password": "Tadeu@123."
+}
+
+```
+* Insira o token em authorize sem as "aspas";
+* Se prefirir crie um novo usuário.<br>
+
+### A base possui uma lista com mais 60 produtos cadastrados na lista de id 1.
+
+## Json com a lista de produtos <br>
+
+Se for necessário deixei disponivél a lista de uma compra que fiz, você pode criar uma lista nova e registrar esses produtos se quise no seguinte link: https://github.com/Tadeujr/lista-backend/blob/master/listaTeste.json
+
+<b>OBS:</b> Lembre-se de altera o campo list com o id para sua nova lista criada
+
+# Rodando a aplicação localmente
+## Instalação das bibliotecas 
+
+* instale o Node: https://nodejs.org/en/ ;
+* Após baixar o repositório execute no terminal o seguinte comando:
 
 ```bash
 $ npm install
+
 ```
 
 # Rodando a aplicação
@@ -32,8 +62,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-# Documentação da Api
-http://localhost:3001/api#/
 
 # Populando a base
 ## Com o Json
