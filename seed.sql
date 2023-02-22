@@ -51,3 +51,4 @@ Values
  ('SAB.LUX LIRIO AZUL 85G', 'Limpeza', 'LUX',2,'UN',5.38,'Supermercado Sempre Tem','25/01/2022',true,1),
  ('SAB.LUX FLOR DE LOTUS 85G', 'Limpeza', 'LUX',2,'UN',5.38,'Supermercado Sempre Tem','25/01/2022',true,1),
  ('SAB.LUX ORQUIDEA NEGRA 85G', 'Limpeza', 'LUX',4,'UN',10.76,'Supermercado Sempre Tem','25/01/2022',true,1)
+

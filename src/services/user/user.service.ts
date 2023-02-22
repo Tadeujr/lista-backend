@@ -36,7 +36,7 @@ export class UserService {
     }
   }
 
-  async updateUser(id: string, data: UserUpdateDto): Promise<UserE> {
+  async updateUser(id: string, data: UserUpdateDto) {
     try {
       const user = await this.userRepository.findOneOrFail({ where: { id } });
       data.password = hashSync(data.password, 10);

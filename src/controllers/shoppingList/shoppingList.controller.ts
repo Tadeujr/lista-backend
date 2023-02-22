@@ -71,9 +71,9 @@ export class shoppinglistController {
       });
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Busca lista a partir a partir do id.' })
-  allListUser(@Param('id') id: string, @Req() req, @Res() res) {
+  @Get(':userId')
+  @ApiOperation({ summary: 'Busca as listas cadastradas do usuário.' })
+  allListUser(@Param('userId') id: string, @Req() req, @Res() res) {
     this.listService
       .allListForUser(id)
       .then((message) => {
