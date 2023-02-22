@@ -71,5 +71,5 @@ Após criar o usuário:
  Não esqueça de alterar o id da lista no json, com o id da lista criado na rota shoppingList.
  
 ## Com o sql
-  Vá na database e execute o seed.sql em https://github.com/Tadeujr/lista-backend/blob/development/seed.sql ;<br>
+  Vá na database e execute o seed.sql em https://github.com/Tadeujr/lista-backend/blob/master/seed.sql ;<br>
   Não esqueça de alterar o id da lista no sql, com o id da lista criado na rota shoppingList.

@@ -31,19 +31,4 @@ export class PersonController {
           .json({ message: HttpStatus.FORBIDDEN });
       });
   }
-
-  @Get('person')
-  @ApiOperation({ summary: 'Lista todos os usuários cadastrados.' })
-  allPerson(@Req() req, @Res() res) {
-    this.personService
-      .allPerson()
-      .then((message) => {
-        res.status(HttpStatus.CREATED).json(message);
-      })
-      .catch(() => {
-        res
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: HttpStatus.FORBIDDEN });
-      });
-  }
 }
