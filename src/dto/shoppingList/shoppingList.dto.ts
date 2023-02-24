@@ -9,10 +9,10 @@ export class ShoppingListDto {
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
   dateList: string;
 
   @ApiProperty()
   @IsString()
+  @IsNotEmpty()
   user: string;
 }

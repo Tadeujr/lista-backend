@@ -52,7 +52,7 @@ export class ShoppingListService {
     return await this.listRepository
       .createQueryBuilder()
       .update(ShoppingListE)
-      .set({ total: list.total, dateList: list.dateList })
+      .set({dateList: list.dateList })
       .where('id = :id and userId = :user', { id: id, user: list.user })
       .execute();
   }

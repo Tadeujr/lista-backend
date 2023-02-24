@@ -51,8 +51,6 @@ describe('AuthService', () => {
     it('should return a user entity list successfully', async () => {
       const result = await userService.listUsers();
 
-      // Assert
-      // Assert
       expect(result).toEqual(newUserList[0]);
       expect(typeof result).toEqual('object');
       expect(userService.listUsers).toHaveBeenCalledTimes(1);

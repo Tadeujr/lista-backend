@@ -39,22 +39,6 @@ export class shoppinglistController {
       });
   }
 
-  @Get('allList')
-  @ApiOperation({ summary: 'Exibe todas as lista cadastradas.' })
-  allList(@Req() req, @Res() res) {
-    this.listService
-      .allList()
-      .then((message) => {
-        res.status(HttpStatus.OK).json(message);
-      })
-      .catch(() => {
-        res.status(HttpStatus.FORBIDDEN).json({
-          message:
-            'Erro ao buscar Lista verifique a escrita do objeto os campo id e dateList.',
-        });
-      });
-  }
-
   @Post('find')
   @ApiOperation({ summary: 'Busca lista a partir da data e usuário.' })
   seacherList(@Body() list:ShoppingListfindDto, @Req() req, @Res() res) {
