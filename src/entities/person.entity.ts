@@ -3,21 +3,21 @@ import { UserE } from './user.entity';
 
 @Entity({ name: 'person' })
 export default class PersonE {
-  @PrimaryGeneratedColumn('uuid')
-  id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: number;
 
-  @Column()
-  name: string;
+    @Column()
+    name: string;
 
-  @Column()
-  city: string;
+    @Column()
+    city: string;
 
-  @Column()
-  uf: string;
+    @Column()
+    uf: string;
 
-  @Column()
-  zipcode: string;
+    @Column()
+    zipcode: string;
 
-  @OneToOne(() => UserE, (person) => person)
-  userFk: UserE;
+    @OneToOne(() => UserE, person => person)
+    userFk: UserE;
 }
