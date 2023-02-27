@@ -50,16 +50,11 @@ $ npm run start:prod
 ```
 
 # Testes (em andamento)
-
+ Apenas o a criação de novo usuário do entidade User foi testado
 ```bash
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 
