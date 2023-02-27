@@ -28,7 +28,7 @@ Se for necessário deixei disponivél a lista de uma compra que fiz, você pode 
 <b>OBS:</b> Lembre-se de altera o campo list com o id para sua nova lista criada
 
 # Rodando a aplicação localmente
-## Instalação das bibliotecas 
+## Instalação das bibliotecas  
 
 * instale o Node: https://nodejs.org/en/ ;
 * Após baixar o repositório execute no terminal o seguinte comando:
