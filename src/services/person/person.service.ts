@@ -11,41 +11,41 @@ import PersonE from '../../entities/person.entity';
 
 @Injectable()
 export class PersonService {
-  constructor(
-    @InjectRepository(PersonE)
-    private readonly personRepository: Repository<PersonE>,
-    @Inject(forwardRef(() => UserService))
-    private readonly userService: UserService,
-  ) {}
+    constructor(
+        @InjectRepository(PersonE)
+        private readonly personRepository: Repository<PersonE>,
+        @Inject(forwardRef(() => UserService))
+        private readonly userService: UserService,
+    ) {}
 
-  async newPerson(data: AccountDto): Promise<UserE> {
-    const account = this.newAccount(data);
-    return account;
-  }
+    async newPerson(data: AccountDto): Promise<UserE> {
+        const account = this.newAccount(data);
+        return account;
+    }
 
-  async allPerson(): Promise<PersonE[]> {
-    return await this.personRepository.query(`select * from "person"`);
-  }
+    async allPerson(): Promise<PersonE[]> {
+        return await this.personRepository.query(`select * from "person"`);
+    }
 
-  private async newAccount(data: AccountDto): Promise<UserE> {
-    const person = new PersonDto();
-    person.name = data.name;
-    person.city = data.city;
-    person.uf = data.uf;
-    person.zipcode = data.zipcode;
+    private async newAccount(data: AccountDto): Promise<UserE> {
+        const person = new PersonDto();
+        person.name = data.name;
+        person.city = data.city;
+        person.uf = data.uf;
+        person.zipcode = data.zipcode;
 
-    const newPerson = await this.personRepository.save(person);
+        const newPerson = await this.personRepository.save(person);
 
-    const newUser = new UserDto();
-    newUser.email = data.email;
-    newUser.password = data.password;
-    newUser.person = newPerson.id; //receiving person id
+        const newUser = new UserDto();
+        newUser.email = data.email;
+        newUser.password = data.password;
+        newUser.person = newPerson.id; //receiving person id
 
-    return await this.createUser(newUser);
-  }
+        return await this.createUser(newUser);
+    }
 
-  private async createUser(user: UserDto): Promise<UserE> {
-    const newUser = await this.userService.createUser(user);
-    return newUser;
-  }
+    private async createUser(user: UserDto): Promise<UserE> {
+        const newUser = await this.userService.createUser(user);
+        return newUser;
+    }
 }

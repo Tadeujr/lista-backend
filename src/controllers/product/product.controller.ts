@@ -1,23 +1,23 @@
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpStatus,
-  Param,
-  Post,
-  Put,
-  Req,
-  Res,
-  UseGuards,
+    Body,
+    Controller,
+    Delete,
+    Get,
+    HttpStatus,
+    Param,
+    Post,
+    Put,
+    Req,
+    Res,
+    UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import {
-  ApiBearerAuth,
-  ApiBody,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
+    ApiBearerAuth,
+    ApiBody,
+    ApiOkResponse,
+    ApiOperation,
+    ApiTags,
 } from '@nestjs/swagger';
 import { ProductService } from '../../services/product/product.service';
 import { ProductDto } from '../../dto/product/product.dto';
@@ -28,73 +28,75 @@ import { ProductE } from '../../entities/product.entity';
 @ApiBearerAuth('access-token')
 @UseGuards(AuthGuard('jwt'))
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+    constructor(private readonly productService: ProductService) {}
 
-  @Get()
-  @ApiOperation({ summary: 'Lista todos os produtos.' })
-  listProducts(@Req() req, @Res() res) {
-    this.productService
-      .listProducts()
-      .then((message) => {
-        res.status(HttpStatus.OK).json(message);
-      })
-      .catch(() => {
-        res.status(HttpStatus.FORBIDDEN).json({ message: 'Produtos não encontrados' });
-      });
-  }
+    @Get()
+    @ApiOperation({ summary: 'Lista todos os produtos.' })
+    listProducts(@Req() req, @Res() res) {
+        this.productService
+            .listProducts()
+            .then(message => {
+                res.status(HttpStatus.OK).json(message);
+            })
+            .catch(() => {
+                res.status(HttpStatus.FORBIDDEN).json({
+                    message: 'Produtos não encontrados',
+                });
+            });
+    }
 
-  @ApiOkResponse()
-  @ApiBody({
-    isArray: true,
-    type: ProductDto,
-  })
-  @Post()
-  @ApiOperation({ summary: 'Criar um novo produto.' })
-  createProduct(@Body() body: ProductE[], @Req() req, @Res() res) {
-    this.productService
-      .createProduct(body)
-      .then((message) => {
-        res.status(HttpStatus.CREATED).json(message);
-      })
-      .catch(() => {
-        res
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: HttpStatus.FORBIDDEN });
-      });
-  }
+    @ApiOkResponse()
+    @ApiBody({
+        isArray: true,
+        type: ProductDto,
+    })
+    @Post()
+    @ApiOperation({ summary: 'Criar um novo produto.' })
+    createProduct(@Body() body: ProductE[], @Req() req, @Res() res) {
+        this.productService
+            .createProduct(body)
+            .then(message => {
+                res.status(HttpStatus.CREATED).json(message);
+            })
+            .catch(() => {
+                res.status(HttpStatus.FORBIDDEN).json({
+                    message: HttpStatus.FORBIDDEN,
+                });
+            });
+    }
 
-  @Put(':id')
-  @ApiOperation({ summary: 'Atualiza dados do produto.' })
-  updateProduct(
-    @Param('id') id: number,
-    @Body() body: ProductDto,
-    @Req() req,
-    @Res() res,
-  ) {
-    this.productService
-      .updateProduct(id, body)
-      .then((message) => {
-        res.status(HttpStatus.OK).json(message);
-      })
-      .catch(() => {
-        res
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: 'Erro ao atualizar o(s) produto(s).' });
-      });
-  }
+    @Put(':id')
+    @ApiOperation({ summary: 'Atualiza dados do produto.' })
+    updateProduct(
+        @Param('id') id: number,
+        @Body() body: ProductDto,
+        @Req() req,
+        @Res() res,
+    ) {
+        this.productService
+            .updateProduct(id, body)
+            .then(message => {
+                res.status(HttpStatus.OK).json(message);
+            })
+            .catch(() => {
+                res.status(HttpStatus.FORBIDDEN).json({
+                    message: 'Erro ao atualizar o(s) produto(s).',
+                });
+            });
+    }
 
-  @Delete(':id')
-  @ApiOperation({ summary: 'Deleta dados do produto.' })
-  deleteProduct(@Param('id') id: number, @Req() req, @Res() res) {
-    this.productService
-      .deleteProduct(id)
-      .then((message) => {
-        res.status(HttpStatus.OK).json(message);
-      })
-      .catch(() => {
-        res
-          .status(HttpStatus.FORBIDDEN)
-          .json({ message: 'Erro ao deletar Produto' });
-      });
-  }
+    @Delete(':id')
+    @ApiOperation({ summary: 'Deleta dados do produto.' })
+    deleteProduct(@Param('id') id: number, @Req() req, @Res() res) {
+        this.productService
+            .deleteProduct(id)
+            .then(message => {
+                res.status(HttpStatus.OK).json(message);
+            })
+            .catch(() => {
+                res.status(HttpStatus.FORBIDDEN).json({
+                    message: 'Erro ao deletar Produto',
+                });
+            });
+    }
 }

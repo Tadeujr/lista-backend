@@ -5,9 +5,9 @@ import { ShoppingListE } from '../../entities/shoppingList.entity';
 import { ShoppingListService } from '../../services/shoppingList/shoppingList.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ShoppingListE])],
-  controllers: [shoppinglistController],
-  providers: [ShoppingListService],
-  exports: [ShoppingListService],
+    imports: [TypeOrmModule.forFeature([ShoppingListE])],
+    controllers: [shoppinglistController],
+    providers: [ShoppingListService],
+    exports: [ShoppingListService],
 })
 export class ShoppingListModule {}

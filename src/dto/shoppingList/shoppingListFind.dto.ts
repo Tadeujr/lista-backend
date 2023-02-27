@@ -1,13 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class ShoppingListfindDto {
-  @ApiProperty()
-  @IsString()
-  @IsNotEmpty()
-  dateList: string;
+    @ApiProperty()
+    @IsString()
+    dateList: string;
 
-  @ApiProperty()
-  @IsString()
-  userId: string;
+    @ApiProperty()
+    @IsString()
+    userId: string;
 }
