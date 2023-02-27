@@ -1,0 +1,14 @@
+orbs:
+  node: circleci/node@4.7
+
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: npm run test
+workflows:
+  build-and-test:
