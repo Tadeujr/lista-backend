@@ -16,7 +16,7 @@ export class ProductService {
 
     async listProducts(): Promise<ProductE[]> {
         return await this.produtoRepository.query(`select * from  public.product
-    order by category`);
+        order by category, "productName"`);
     }
 
     async createProduct(newProducts: ProductE[]): Promise<ProductE[]> {
@@ -95,7 +95,7 @@ export class ProductService {
         }
     }
 
-    async updateValorList(
+    private async updateValorList(
         operation: boolean,
         listId: number,
         valor: number,

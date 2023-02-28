@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserController } from '../../src/controllers/user/user.controller';
 import { UserService } from '../../src/services/user/user.service';
 
-
 const newUser = {
     id: '591ecf04-d638-4acc-b43a-d149470819a3',
     email: 'tadeu_junior@outlook.com',
