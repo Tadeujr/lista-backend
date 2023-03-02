@@ -6,6 +6,7 @@ let common = [
     '--format @cucumber/pretty-formatter',
     '--format-options \'{"colorsEnabled": true}\'',
     '--language pt', // Adicionando a opção para ler o idioma em português
+    '--publish-quiet'
     
     // '--dry-run'
 ].join(' ');
