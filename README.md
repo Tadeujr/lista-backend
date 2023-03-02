@@ -55,6 +55,9 @@ $ npm run start:prod
 # unit tests
 $ npm run test
 
+# cucumber
+npm run test:bdd
+
 ```
 
 
