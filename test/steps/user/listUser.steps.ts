@@ -24,7 +24,7 @@ export class UserSteps {
   private result: any;
 
   @given(/^que eu tenha uma lista de usuários/)
-  public async iHaveAListOfUsers(): Promise<void> {
+  public async ListOfUsers(): Promise<void> {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UserController],
       providers: [
@@ -55,7 +55,7 @@ export class UserSteps {
   }
 
   @then(/^eu visualizo uma lista de usuário/)
-  public async iShouldReceiveAListOfUsers(){
+  public async iShouldReceiveAListOfUsers(): Promise<void>{
     const result = await this.userService.listUsers();
 
     assert.equal(this.result,newUserList[0] ,'Not pass in List Users');

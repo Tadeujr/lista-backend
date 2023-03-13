@@ -2,6 +2,11 @@
 
 Projeto pessoal de criação de uma lista de compras que irá auxiliar na minhas compra mensais e gerar alguns relatório, esse repositório é responsavel pela API backend da aplicação que utiliza NestJS, a API encontra-se hospedada no heroku.
 
+# Artefatos
+  ## Diagrama de classe <br>
+ ![texto](./artefacts/ShoppingList.png)
+ 
+ <br>
 # Documentação da Api (Heroku) <br>
 https://lista-backend.herokuapp.com/api#
 
