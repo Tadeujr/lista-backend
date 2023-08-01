@@ -30,11 +30,11 @@ import { ProductE } from '../../entities/product.entity';
 export class ProductController {
     constructor(private readonly productService: ProductService) {}
 
-    @Get()
-    @ApiOperation({ summary: 'Lista todos os produtos.' })
-    listProducts(@Req() req, @Res() res) {
+    @Get(':listId')
+    @ApiOperation({ summary: 'Lista todos os produtos de uma determinada lista a partir do ID.' })
+    listProducts(@Param('listId') id: string,@Req() req, @Res() res) {
         this.productService
-            .listProducts()
+            .listProducts(id)
             .then(message => {
                 res.status(HttpStatus.OK).json(message);
             })

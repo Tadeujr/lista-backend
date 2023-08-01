@@ -21,6 +21,7 @@ import { ShoppingListfindDto } from 'src/dto/shoppingList/shoppingListFind.dto';
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')
 export class shoppinglistController {
+    
     constructor(private readonly listService: ShoppingListService) {}
 
     @UseGuards(AuthGuard('jwt'))
