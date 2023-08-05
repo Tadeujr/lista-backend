@@ -12,7 +12,7 @@ export class AuthController {
     @UseGuards(AuthGuard('local'))
     @ApiBody({ type: LoginDto })
     @Post('login')
-    @ApiOperation({ summary: 'Login.' })
+    @ApiOperation({ summary: 'Login, returna um token e o id do usuário' })
     async login(@Req() req) {
         return await this.authService.login(req.user);
     }

@@ -14,8 +14,8 @@ export class ProductService {
         private readonly shoppingListService: ShoppingListService,
     ) {}
 
-    async listProducts(): Promise<ProductE[]> {
-        return await this.produtoRepository.query(`select * from  public.product
+    async listProducts(id:string): Promise<ProductE[]> {
+        return await this.produtoRepository.query(`select * from  public.product where list = ${id}
         order by category, "productName"`);
     }
 

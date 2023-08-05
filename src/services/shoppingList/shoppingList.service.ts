@@ -26,15 +26,17 @@ export class ShoppingListService {
         return await this.listRepository.save(newList);
     }
 
-    async seacherList(list: any): Promise<ShoppingListE[]> {
+    async seacherList(dateList: string, userId: string): Promise<ShoppingListE[]> {
         return await this.listRepository.query(
-            `select * from "shoppingList" where "dateList" = '${list.dateList}' and "userId" = '${list.userId}'`,
-        ); //and "userId" = '${list.idUser}'
-    }
-
-    async deleteList(id: string): Promise<DeleteResult> {
+          `select * from "shoppingList" where "dateList" = $1 and "userId" = $2`,
+          [dateList, userId],
+        );
+      }
+//alterar para apagar a lista  e os produtos
+      async deleteList(id: string): Promise<DeleteResult> {
+        //delete from "shoppingList" where id =
         await this.listRepository.query(
-            `delete from Product where "listId" ='${id}'`,
+            `delete from "product" where list = '${id}'`,
         );
         return await this.listRepository.delete(id);
     }
