@@ -1,6 +1,6 @@
 # Descrição
 
-Projeto pessoal de criação de uma lista de compras que irá auxiliar na minhas compra mensais e gerar alguns relatório, esse repositório é responsavel pela API backend da aplicação que utiliza NestJS, a API encontra-se hospedada no heroku.
+Projeto pessoal de criação de uma lista de compras que irá auxiliar na minhas compra mensais e gerar alguns relatório, esse repositório é responsavel pela API backend da aplicação que utiliza NestJS, a API encontra-se hospedada no heroku. Já o frontend está em hospedado no versel, o fronte é mue calcanhar de aquiles mas venho evoluindo com o tempo (riso).
 
 # Artefatos
   ## Diagrama de classe <br>
@@ -10,7 +10,8 @@ Projeto pessoal de criação de uma lista de compras que irá auxiliar na minhas
 # Documentação da Api (Heroku) <br>
 https://lista-backend.herokuapp.com/api#
 
-
+#Frontend Vercel (em desenvolvimento)
+https://lista-front.vercel.app/
 
 ## Usuário para teste <br>
 * Faça login na rota https://lista-backend.herokuapp.com/api#/Auth/AuthController_login utilizando o objeto abaixo:<br>
