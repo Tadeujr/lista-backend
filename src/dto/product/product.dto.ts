@@ -49,6 +49,7 @@ export class ProductDto {
 
     constructor(
         store?: string,
+        category?: string,
         productName?: string,
         brand?: string,
         price?: number,
@@ -59,6 +60,7 @@ export class ProductDto {
         list?: any,
     ) {
         this.store = store;
+        this.category = category;
         this.productName = productName;
         this.brand = brand;
         this.price = price;

@@ -22,7 +22,6 @@ import { ShoppingListfindDto } from 'src/dto/shoppingList/shoppingListFind.dto';
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')
 export class shoppinglistController {
-    
     constructor(private readonly listService: ShoppingListService) {}
 
     @UseGuards(AuthGuard('jwt'))
@@ -47,7 +46,7 @@ export class shoppinglistController {
     @ApiOperation({ summary: 'Busca lista a partir da data e usuário.' })
     seacherList(@Query() query: ShoppingListfindDto, @Req() req, @Res() res) {
         this.listService
-            .seacherList(query.dateList,query.userId)
+            .seacherList(query.dateList, query.userId)
             .then(message => {
                 res.status(HttpStatus.OK).json(message);
             })
