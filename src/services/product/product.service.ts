@@ -31,7 +31,7 @@ export class ProductService {
 
     async updateProduct(id: number, data: ProductDto): Promise<ProductE> {
         let valor: number;
-
+        
         const product = await this.produtoRepository.findOneOrFail({
             where: { id },
         });

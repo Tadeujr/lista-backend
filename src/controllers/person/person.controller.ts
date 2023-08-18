@@ -17,10 +17,8 @@ export class PersonController {
             .then(message => {
                 res.status(HttpStatus.CREATED).json(message);
             })
-            .catch(() => {
-                res.status(HttpStatus.FORBIDDEN).json({
-                    message: HttpStatus.FORBIDDEN,
-                });
+            .catch((message ) => {
+                res.status(HttpStatus.FORBIDDEN).json(message);
             });
     }
 }
