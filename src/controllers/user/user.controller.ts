@@ -27,7 +27,7 @@ export class UserController {
     @ApiOperation({ summary: 'Busca usuário por email.' })
     async showUser(@Param('email') email: string, @Res() res) {
         return await this.userService
-            .findOneOrFail({ where: { email } })
+            .findOneOrFail({ where: { email:email } })
             .then(message => {
                 res.status(HttpStatus.CREATED).json(message);
             })

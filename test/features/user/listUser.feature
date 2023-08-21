@@ -5,7 +5,7 @@ Funcionalidade: Opções de cadastro de Usuário
 
 Cenário: Buscar usuário
     Dado que eu tenha um usuário cadastrado
-    Quando eu fizer informar o email cadastrado
+    Quando eu informar o email cadastrado para busca-lo
     Então eu visualizo um objeto com a informações de id, email e password
 
 

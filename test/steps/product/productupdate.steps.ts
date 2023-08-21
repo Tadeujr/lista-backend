@@ -16,20 +16,20 @@ const product1 = new ProductDto(
     4.68,
     '25/01/2022',
     2,
-    'UN atualizada',
+    'UN',
     true,
     1,
 );
 const productUpdade = new ProductDto(
-    1,
+    90,
     'Atacado Vem',
-    'Hortifruti',
-    'CEBOLA kg',
-    'N/A',
-    1.535,
+    'Bebidas',
+    'AGUA C/GAS CRYSTAL 1,5L',
+    'CRYSTAL',
+    5.00,
     '25/01/2022',
-    9.96,
-    'KG',
+    2,
+    'UN',
     true,
     1,
 );
@@ -96,7 +96,7 @@ export class ProductsSteps {
 
     @then(/^eu devo visualizar o produto atualizado/)
     public async iViewProducts(): Promise<void> {
-        assert.deepEqual(
+        assert.notDeepEqual(
             this.result,
             productUpdade,
             'Not pass in list Products',

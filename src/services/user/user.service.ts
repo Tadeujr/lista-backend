@@ -19,7 +19,7 @@ export class UserService {
         });
     }
 
-    async findOneOrFail(options: FindOneOptions<UserE>) {
+    async findOneOrFail(options): Promise<UserE> {
         try {
             return await this.userRepository.findOneOrFail(options);
         } catch (error) {
