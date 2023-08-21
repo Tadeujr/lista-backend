@@ -14,8 +14,9 @@ export class ProductService {
         private readonly shoppingListService: ShoppingListService,
     ) {}
 
-    async listProducts(id:string): Promise<ProductE[]> {
-        return await this.produtoRepository.query(`select * from  public.product where list = ${id}
+    async listProducts(id: string): Promise<ProductE[]> {
+        return await this.produtoRepository
+            .query(`select * from  public.product where list = ${id}
         order by category, "productName"`);
     }
 
@@ -30,7 +31,7 @@ export class ProductService {
 
     async updateProduct(id: number, data: ProductDto): Promise<ProductE> {
         let valor: number;
-
+        
         const product = await this.produtoRepository.findOneOrFail({
             where: { id },
         });

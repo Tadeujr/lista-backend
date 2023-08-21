@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hashSync } from 'bcrypt';
 import { FindOneOptions, Repository, DeleteResult } from 'typeorm';
@@ -19,7 +19,7 @@ export class UserService {
         });
     }
 
-    async findOneOrFail(options: FindOneOptions<UserE>) {
+    async findOneOrFail(options): Promise<UserE> {
         try {
             return await this.userRepository.findOneOrFail(options);
         } catch (error) {
@@ -29,10 +29,25 @@ export class UserService {
 
     async createUser(data: UserDto): Promise<UserE> {
         try {
-            const user = await this.userRepository.create(data);
-            return await this.userRepository.save(user);
+            const existingUserWithEmail = await this.userRepository.find({
+                where: {
+                    email: data.email,
+                },
+                select: ['id', 'email'],
+            });
+    
+            if (existingUserWithEmail.length > 0) {
+                throw new NotFoundException('O email já está cadastrado.');
+            }
+    
+            const newUser = this.userRepository.create(data);
+            return this.userRepository.save(newUser);
         } catch (error) {
-            throw new NotFoundException('O email já está cadastrado.');
+            if (error instanceof NotFoundException) {
+                throw new HttpException(error.message, HttpStatus.CONFLICT); // 409 Conflict
+            } else {
+                throw new InternalServerErrorException('Erro ao criar usuário.');
+            }
         }
     }
 

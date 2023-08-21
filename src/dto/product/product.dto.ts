@@ -48,7 +48,9 @@ export class ProductDto {
     list: ProductE['list'];
 
     constructor(
+        id?:number,
         store?: string,
+        category?: string,
         productName?: string,
         brand?: string,
         price?: number,
@@ -57,8 +59,9 @@ export class ProductDto {
         commercialUnit?: string,
         wasAcquired?: boolean,
         list?: any,
-    ) {
+    ) { this.id = id;
         this.store = store;
+        this.category = category;
         this.productName = productName;
         this.brand = brand;
         this.price = price;

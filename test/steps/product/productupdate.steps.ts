@@ -8,33 +8,33 @@ import { ProductDto } from '../../../src/dto/product/product.dto';
 import { ProductE } from '../../../src/entities/product.entity';
 
 const product1 = new ProductDto(
-    1,
+    90,
     'Atacado Vem',
-    'Hortifruti',
-    'BATATA DOCE kg',
-    'N/A',
-    11.39,
+    'Bebidas',
+    'AGUA C/GAS CRYSTAL 1,5L',
+    'CRYSTAL',
+    4.68,
     '25/01/2022',
-    2.855,
-    'KG',
+    2,
+    'UN',
     true,
     1,
 );
-const product2 = new ProductDto(
-    1,
+const productUpdade = new ProductDto(
+    90,
     'Atacado Vem',
-    'Hortifruti',
-    'CEBOLA kg',
-    'N/A',
-    1.535,
+    'Bebidas',
+    'AGUA C/GAS CRYSTAL 1,5L',
+    'CRYSTAL',
+    5.00,
     '25/01/2022',
-    9.96,
-    'KG',
+    2,
+    'UN',
     true,
     1,
 );
 
-const newproducts = [product1, product2];
+const newproducts = [product1];
 const productEntities: ProductE[] = newproducts.map(dto => {
     const entity: ProductE = new ProductE();
     entity.store = dto.store;
@@ -56,7 +56,7 @@ export class ProductsSteps {
     private productService: ProductService;
     private result: any;
 
-    @given(/^eu tenha uma lista cadastrada/)
+    @given(/^que eu precise atualizar um produto/)
     public async createProducts(): Promise<void> {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [ProductController],
@@ -64,7 +64,7 @@ export class ProductsSteps {
                 {
                     provide: ProductService,
                     useValue: {
-                        listProduct: jest
+                        updateProduct: jest
                             .fn<() => Promise<ProductE[]>>()
                             .mockResolvedValue(productEntities),
                         findOneOrFail: jest
@@ -83,14 +83,26 @@ export class ProductsSteps {
         this.productService = module.get<ProductService>(ProductService);
     }
 
-    @when(/^eu adicionar produto que comprei a lista/)
-    public async iAddnewproduuct(): Promise<void> {
-        this.result = await this.productService.createProduct(productEntities);
+    @when(
+        /^eu escolher um produto para atualizar as informações de loja, categoria do produto,marca, preço, data de compra, unidade,unidade comercial,compra realizada/,
+    )
+    public async iUpdadeProduct(): Promise<void> {
+       this.result = await this.productService.updateProduct(
+            product1.id,
+            product1,
+        );
+        
     }
 
-    @then(/^eu devo ver os produtos que acabei de cadastrar/)
+    @then(/^eu devo visualizar o produto atualizado/)
     public async iViewProducts(): Promise<void> {
-        assert.deepEqual(this.result, newproducts, 'Not pass in list Products');
+        assert.notDeepEqual(
+            this.result,
+            productUpdade,
+            'Not pass in list Products',
+        );
         console.log(this.result);
     }
+
+    
 }

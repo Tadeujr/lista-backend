@@ -22,6 +22,6 @@ export class ShoppingListE {
     @ManyToOne(() => UserE, user => user)
     user: UserE;
 
-    @OneToMany(() => ProductE, products => products)
+    @OneToMany(() => ProductE, products => products, { cascade: true })
     products: ProductE[];
 }

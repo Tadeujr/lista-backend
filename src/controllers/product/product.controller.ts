@@ -31,8 +31,11 @@ export class ProductController {
     constructor(private readonly productService: ProductService) {}
 
     @Get(':listId')
-    @ApiOperation({ summary: 'Lista todos os produtos de uma determinada lista a partir do ID.' })
-    listProducts(@Param('listId') id: string,@Req() req, @Res() res) {
+    @ApiOperation({
+        summary:
+            'Lista todos os produtos de uma determinada lista a partir do ID.',
+    })
+    listProducts(@Param('listId') id: string, @Req() req, @Res() res) {
         this.productService
             .listProducts(id)
             .then(message => {

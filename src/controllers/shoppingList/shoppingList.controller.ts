@@ -13,7 +13,7 @@ import {
     UseGuards,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { ShoppingListService } from '../../services/shoppingList/shoppingList.service';
 import { ShoppingListDto } from '../../dto/shoppingList/shoppingList.dto';
 import { ShoppingListUpdateDto } from '../../dto/shoppingList/shoppingListUpdate.dto';
@@ -21,11 +21,10 @@ import { ShoppingListfindDto } from 'src/dto/shoppingList/shoppingListFind.dto';
 
 @ApiTags('Shoppinglist')
 @Controller('shoppinglist')
+@UseGuards(AuthGuard('jwt'))
+@ApiBearerAuth('access-token')
 export class shoppinglistController {
-    
     constructor(private readonly listService: ShoppingListService) {}
-
-    @UseGuards(AuthGuard('jwt'))
     @Post('newlist')
     @ApiOperation({ summary: 'Cria uma nova lista.' })
     async createList(@Body() data: ShoppingListDto, @Req() req, @Res() res) {
@@ -47,7 +46,7 @@ export class shoppinglistController {
     @ApiOperation({ summary: 'Busca lista a partir da data e usuário.' })
     seacherList(@Query() query: ShoppingListfindDto, @Req() req, @Res() res) {
         this.listService
-            .seacherList(query.dateList,query.userId)
+            .seacherList(query.dateList, query.userId)
             .then(message => {
                 res.status(HttpStatus.OK).json(message);
             })
