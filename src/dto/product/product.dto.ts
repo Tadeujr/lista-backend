@@ -27,7 +27,6 @@ export class ProductDto {
     price: number;
 
     @IsString()
-    @IsNotEmpty()
     @ApiProperty()
     buyDate: string;
 
