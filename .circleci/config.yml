@@ -10,12 +10,17 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          name: Install and Run BDD tests
-          command: |
-            npm install cucumber
-            npm run test:bdd
+          name: Update npm
+          command: npm install -g npm@latest
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Run BDD tests
+          command: npm run test:bdd
 
 workflows:
   build-and-test:
     jobs:
       - build-and-test
+
