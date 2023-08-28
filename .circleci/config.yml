@@ -10,7 +10,7 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          command: npm run test:bdd
+          command: npm run test
 workflows:
   build-and-test:
     jobs:
