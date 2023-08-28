@@ -1,19 +1,22 @@
 version: 2.1
 orbs:
-    node: circleci/node@4.7
+  node: circleci/node@4.7
 
 jobs:
-    build-and-test:
-        executor:
-            name: node/default
-        steps:
-            - checkout
-            - node/install-packages
-            - run:
-                  name: Run BDD tests
-                  command: npm run test:bdd
+  build-and-test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Install Cucumber
+          command: npm install -g cucumber
+      - run:
+          name: Run BDD tests
+          command: npm run test:bdd
 
 workflows:
-    build-and-test:
-        jobs:
-            - build-and-test
+  build-and-test:
+    jobs:
+      - build-and-test
