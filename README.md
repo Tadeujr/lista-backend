@@ -17,8 +17,8 @@ https://lista-front.vercel.app/
 * Faça login na rota https://lista-backend.herokuapp.com/api#/Auth/AuthController_login utilizando o objeto abaixo:<br>
 ```
 {
-    "email": "tadeu_junior@outlook.com",
-    "password": "Tadeu@123."
+    "email": "teste@outlook.com",
+    "password": "Teste@123."
 }
 
 ```
