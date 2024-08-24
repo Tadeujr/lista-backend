@@ -13,8 +13,11 @@ https://lista-backend.herokuapp.com/api#
 #Frontend Vercel (em desenvolvimento)
 https://lista-front.vercel.app/
 
-## Usuário para teste <br>
-* Faça login na rota https://lista-backend.herokuapp.com/api#/Auth/AuthController_login utilizando o objeto abaixo:<br>
+## Usuário para teste Atualização <br>
+<h1>Aplicação Encerrada</h1>
+Depois de 1 ano de utilização da aplicação e converçando com o cliente(minha esposa), verificamos que apenas um planilha com compartilhamento no google já atendia a demanada de uma lista de comprar onde é possivel edita-la em tempo de execução. 
+
+* Faça login na rota ~https://lista-backend.herokuapp.com/api#/Auth/AuthController_login~ utilizando o objeto abaixo:<br>
 ```
 {
     "email": "teste@outlook.com",
